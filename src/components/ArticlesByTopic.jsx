@@ -8,9 +8,16 @@ class ArticlesByTopic extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <ul>
+      <ul className="list">
         {articles.map(article => (
-          <li key={article.article_id}>{article.title} </li>
+          <>
+            <li id="article-item" key={article.article_id}>
+              {article.title.toUpperCase()}
+              <br />
+              {article.body}
+            </li>
+            <br />
+          </>
         ))}
       </ul>
     );

@@ -8,13 +8,18 @@ class Articles extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <div>
-        <ul>
-          {articles.map(article => (
-            <li key={article.article_id}>{article.title}</li>
-          ))}
-        </ul>
-      </div>
+      <ul className="list">
+        {articles.map(article => (
+          <>
+            <li id="article-item" key={article.article_id}>
+              {article.title.toUpperCase()}
+              <br />
+              {article.body}
+            </li>
+            <br />
+          </>
+        ))}
+      </ul>
     );
   }
 

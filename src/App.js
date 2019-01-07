@@ -19,7 +19,7 @@ class App extends Component {
         <Login />
         <Search />
         <NavBar />
-        <Router className="contents">
+        <Router className="content">
           <Articles path="/" />
           <ArticlesByTopic path="/topics/:topic/articles" />
         </Router>
