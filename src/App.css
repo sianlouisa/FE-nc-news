@@ -1,24 +1,37 @@
 .App {
   text-align: center;
-  display: grid;
   height: 100vh;
-  grid-template: 1fr 7fr 1fr / 3fr 1fr;
-  grid-template-areas: 'header nav' 'content sidebar' 'footer footer';
+  display: grid;
+  grid-template:
+    [header-left] 'header login search' 1fr [search-right]
+    [nav-left] 'nav nav nav' 1fr [nav-right]
+    [content-right] 'content content sidebar' 7fr [sidebar-left]
+    [footer-right] 'footer footer date' 1fr [date-left];
 }
 
 .header {
-  grid-area: header;
   background-color: red;
+  grid-area: header;
+}
+
+.login {
+  background-color: blue;
+  grid-area: login;
+}
+
+.search {
+  background-color: yellow;
+  grid-area: search;
 }
 
 .nav {
   grid-area: nav;
-  background-color: blue;
+  background-color: orange;
 }
 
 .content {
   grid-area: content;
-  background-color: yellow;
+  background-color: turquoise;
 }
 
 .sidebar {
@@ -28,5 +41,10 @@
 
 .footer {
   grid-area: footer;
-  background-color: green;
+  background-color: skyblue;
+}
+
+.date {
+  grid-area: date;
+  background-color: darkgreen;
 }

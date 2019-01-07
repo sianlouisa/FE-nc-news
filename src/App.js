@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Router } from '@reach/router';
 import Header from './components/Header';
-import Nav from './components/Nav';
-import Content from './components/Content';
+import NavBar from './components/Nav';
+import Articles from './components/Articles';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
-import { Router } from '@reach/router';
+import Login from './components/Login';
+import Search from './components/Search';
+import Date from './components/Date';
+import ArticlesByTopic from './components/ArticlesByTopic';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <Nav />
-        <Content />
+        <Login />
+        <Search />
+        <NavBar />
+        <Router className="contents">
+          <Articles path="/" />
+          <ArticlesByTopic path="/topics/:topic/articles" />
+        </Router>
         <Sidebar />
         <Footer />
+        <Date />
       </div>
     );
   }
