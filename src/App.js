@@ -3,13 +3,12 @@ import './App.css';
 import { Router } from '@reach/router';
 import Header from './components/Header';
 import NavBar from './components/Nav';
-import Articles from './components/Articles';
+import Content from './components/Content';
 import Sidebar from './components/Sidebar';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Search from './components/Search';
 import Date from './components/Date';
-import ArticlesByTopic from './components/ArticlesByTopic';
 
 class App extends Component {
   render() {
@@ -20,8 +19,8 @@ class App extends Component {
         <Search />
         <NavBar />
         <Router className="content">
-          <Articles path="/" />
-          <ArticlesByTopic path="/topics/:topic/articles" />
+          <Content path="/home" />
+          <Content path="/topics/:topic/articles" />
         </Router>
         <Sidebar />
         <Footer />

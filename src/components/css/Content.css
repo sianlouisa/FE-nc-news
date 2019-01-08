@@ -1,0 +1,23 @@
+.content {
+  height: 500px;
+  overflow: scroll;
+  display: flex;
+  justify-content: center;
+  background-color: blue;
+  border-style: solid;
+  border-color: black;
+  grid-area: content;
+}
+
+.list {
+  background-color: yellow;
+  display: flex;
+  flex-direction: column;
+}
+
+#article-item {
+  list-style-type: none;
+  background-color: red;
+  border-style: solid;
+  border-color: black;
+}
