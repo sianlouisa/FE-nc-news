@@ -9,26 +9,35 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Search from './components/Search';
 import Date from './components/Date';
+import Auth from './components/Auth';
 
 class App extends Component {
+  state = { user: {} };
   render() {
+    const { user } = this.state;
     return (
       <div className="App">
-        <Header />
-        <Login />
-        <Search />
-        <NavBar />
-        <Router className="content">
-          <Content path="/home" />
-          <Content path="/topics/:topic/articles" />
-          <Content path="/articles/:id" />
-        </Router>
-        <Sidebar />
-        <Footer />
-        <Date />
+        <Auth handleSubmit={this.handleSubmit}>
+          <Header />
+          <Login />
+          <Search />
+          <NavBar />
+          <Router className="content">
+            <Content path="/" />
+            <Content path="/topics/:topic/articles" />
+            <Content path="/articles/:id" />
+          </Router>
+          <Sidebar />
+          <Footer />
+          <Date />
+        </Auth>
       </div>
     );
   }
+
+  handleSubmit = event => {
+    console.log('submit');
+  };
 }
 
 export default App;
