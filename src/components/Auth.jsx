@@ -4,23 +4,20 @@ class Auth extends Component {
   state = { username: '' };
   render() {
     const { username } = this.state;
-    const { handleSubmit } = this.props;
-    return (
+    const { handleSubmit, user, children } = this.props;
+    return user.user_id ? (
+      children
+    ) : (
       <form onSubmit={handleSubmit}>
-        <label htmlFor="login" />
-        <input
-          type="text"
-          value={username}
-          id="login"
-          onChange={this.handleChange}
-        />
-        <button>Login</button>
+        <label htmlFor="username" />
+        <input value={username} id="username" onChange={this.handleChange} />
+        <button type="submit">Login</button>
       </form>
     );
   }
 
   handleChange = event => {
-    const { username } = event.target.value;
+    const username = event.target.value;
     this.setState({ username });
   };
 }

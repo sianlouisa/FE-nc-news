@@ -10,6 +10,7 @@ import Login from './components/Login';
 import Search from './components/Search';
 import Date from './components/Date';
 import Auth from './components/Auth';
+import * as api from './api';
 
 class App extends Component {
   state = { user: {} };
@@ -17,7 +18,7 @@ class App extends Component {
     const { user } = this.state;
     return (
       <div className="App">
-        <Auth handleSubmit={this.handleSubmit}>
+        <Auth handleSubmit={this.handleSubmit} user={user}>
           <Header />
           <Login />
           <Search />
@@ -34,9 +35,12 @@ class App extends Component {
       </div>
     );
   }
-
   handleSubmit = event => {
-    console.log('submit');
+    event.preventDefault();
+    const user = event.target.username.value;
+    api
+      .getUserById(user)
+      .then(user => this.setState({ user, isLoggedIn: true }));
   };
 }
 
