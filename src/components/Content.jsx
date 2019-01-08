@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import '../components/css/Content.css';
 import * as api from '../api';
 import List from './List';
+import Sortoptions from './Sortoptions';
 
 class Content extends Component {
   state = {
     articles: [],
     articlesByTopic: [],
     singleArticle: [],
+    limitArticles: [],
+    sortedArticles: [],
     isArticlesByTopic: false,
     isSingleArticle: false,
+    isLimit: false,
+    isSorted: false,
   };
   render() {
+    console.log(this.props);
     const {
       articles,
       articlesByTopic,
@@ -21,11 +27,27 @@ class Content extends Component {
     } = this.state;
 
     if (isArticlesByTopic) {
-      return <List articles={articlesByTopic} />;
+      return (
+        <>
+          <Sortoptions
+            handleLimitClick={this.handleLimitClick}
+            handleSortClick={this.handleSortClick}
+          />
+          <List articles={articlesByTopic} />
+        </>
+      );
     } else if (isSingleArticle) {
       return <List articles={singleArticle} />;
     }
-    return <List articles={articles} />;
+    return (
+      <>
+        <Sortoptions
+          handleLimitClick={this.handleLimitClick}
+          handleSortClick={this.handleSortClick}
+        />
+        <List articles={articles} />
+      </>
+    );
   }
 
   componentDidMount() {
@@ -36,11 +58,23 @@ class Content extends Component {
     const { id, topic } = this.props;
     if (topic !== prevProps.topic) {
       if (topic !== undefined) this.fetchArticlesByTopic(topic);
+      this.setState({ isArticlesByTopic: false });
     }
     if (id !== prevProps.id) {
       if (id !== undefined) this.fetchArticleById(id);
+      this.setState({ isSingleArticle: false });
     }
   }
+
+  handleLimitClick = event => {
+    const limit = event.target.id;
+    this.fetchUpdatedLimitArticles(limit);
+  };
+
+  handleSortClick = event => {
+    const sortBy = event.target.value;
+    this.fetchSortedArticles(sortBy);
+  };
 
   fetchAllArticles = () => {
     api.getArticles().then(articles => this.setState({ articles }));
@@ -50,7 +84,7 @@ class Content extends Component {
     api
       .getArticlesByTopic(topic)
       .then(articlesByTopic =>
-        this.setState({ articlesByTopic, isArticleByTopic: true }),
+        this.setState({ articlesByTopic, isArticlesByTopic: true }),
       );
   };
 
@@ -60,6 +94,18 @@ class Content extends Component {
       .then(singleArticle =>
         this.setState({ singleArticle, isSingleArticle: true }),
       );
+  };
+
+  fetchSortedArticles = sortBy => {
+    api
+      .articleSortBy(sortBy)
+      .then(sortedArticles => this.setState({ articles: sortedArticles }));
+  };
+
+  fetchUpdatedLimitArticles = limit => {
+    api
+      .articleLimits(limit)
+      .then(limitArticles => this.setState({ articles: limitArticles }));
   };
 }
 

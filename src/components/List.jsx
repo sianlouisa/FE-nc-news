@@ -5,10 +5,10 @@ import Article from './Article';
 class List extends Component {
   render() {
     const { articles, handleClick } = this.props;
-    return (
-      <ul className="list">
-        {Array.isArray(articles) ? (
-          articles.map(article => (
+    return Array.isArray(articles) ? (
+      <>
+        <ul className="list">
+          {articles.map(article => (
             <li id="article-item" key={article.article_id}>
               <Link
                 to={`/articles/${article.article_id}`}
@@ -17,13 +17,17 @@ class List extends Component {
               >
                 {article.title.toUpperCase()}
               </Link>
-              <br /> {article.body}
+              <p>{article.body}</p>
+              <p>Author: {article.author}</p>
+              <p>Time: {article.created_at}</p>
+              <p>Comments: {article.comment_count}</p>
+              <p>Votes: {article.votes}</p>
             </li>
-          ))
-        ) : (
-          <Article article={articles} />
-        )}
-      </ul>
+          ))}
+        </ul>
+      </>
+    ) : (
+      <Article article={articles} />
     );
   }
 }

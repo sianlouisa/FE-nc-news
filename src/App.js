@@ -18,20 +18,20 @@ class App extends Component {
     const { user } = this.state;
     return (
       <div className="App">
-        <Auth handleSubmit={this.handleSubmit} user={user}>
-          <Header />
-          <Login />
-          <Search />
-          <NavBar />
-          <Router className="content">
-            <Content path="/" />
-            <Content path="/topics/:topic/articles" />
-            <Content path="/articles/:id" />
-          </Router>
-          <Sidebar />
-          <Footer />
-          <Date />
-        </Auth>
+        {/* <Auth handleSubmit={this.handleSubmit} user={user}> */}
+        <Header />
+        <Login />
+        <Search />
+        <NavBar />
+        <Router className="content">
+          <Content path="/" />
+          <Content path="/topics/:topic/articles" />
+          <Content path="/articles/:id" />
+        </Router>
+        <Sidebar />
+        <Footer />
+        <Date />
+        {/* </Auth> */}
       </div>
     );
   }

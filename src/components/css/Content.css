@@ -1,23 +1,31 @@
 .content {
   height: 500px;
   overflow: scroll;
-  display: flex;
-  justify-content: center;
-  background-color: blue;
+  overflow-x: hidden;
   border-style: solid;
   border-color: black;
   grid-area: content;
+  grid-template: 1fr 1fr / 1fr;
+  grid-template-areas: 'sort' 'list';
 }
 
 .list {
-  background-color: yellow;
-  display: flex;
-  flex-direction: column;
+  border-style: solid;
+  border-color: black;
+  grid-area: list;
+  margin: 0px;
 }
 
 #article-item {
-  list-style-type: none;
-  background-color: red;
   border-style: solid;
   border-color: black;
+  margin: 10px;
+}
+
+.sort {
+  grid-area: sort;
+  border-style: solid;
+  border-color: black;
+  margin: 0px;
+  height: 10%;
 }

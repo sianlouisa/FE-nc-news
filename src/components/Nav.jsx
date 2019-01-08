@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import '../components/css/Nav.css';
 import { Link } from '@reach/router';
+import * as api from '../api';
 
 class NavBar extends Component {
   state = {
-    topics: [
-      {
-        description: 'The man, the Mitch, the legend',
-        slug: 'mitch',
-      },
-      {
-        description: 'Not dogs',
-        slug: 'cats',
-      },
-    ],
+    topics: [],
   };
   render() {
     const { topics } = this.state;
@@ -27,6 +19,14 @@ class NavBar extends Component {
       </nav>
     );
   }
+
+  componentDidMount() {
+    this.fetchTopics();
+  }
+
+  fetchTopics = () => {
+    api.getTopics().then(topics => this.setState({ topics }));
+  };
 }
 
 export default NavBar;
