@@ -21,6 +21,7 @@ class App extends Component {
         <Router className="content">
           <Content path="/home" />
           <Content path="/topics/:topic/articles" />
+          <Content path="/articles/:id" />
         </Router>
         <Sidebar />
         <Footer />

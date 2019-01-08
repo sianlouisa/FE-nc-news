@@ -7,13 +7,25 @@ class Content extends Component {
   state = {
     articles: [],
     articlesByTopic: [],
+    singleArticle: [],
     isArticlesByTopic: false,
+    isSingleArticle: false,
   };
   render() {
-    const { articles, articlesByTopic, isArticlesByTopic } = this.state;
+    const {
+      articles,
+      articlesByTopic,
+      singleArticle,
+      isArticlesByTopic,
+      isSingleArticle,
+    } = this.state;
+
     if (isArticlesByTopic) {
       return <List articles={articlesByTopic} />;
-    } else return <List articles={articles} />;
+    } else if (isSingleArticle) {
+      return <List articles={singleArticle} />;
+    }
+    return <List articles={articles} />;
   }
 
   componentDidMount() {
@@ -21,13 +33,12 @@ class Content extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.topic !== prevProps.topic) {
-      if (this.props.topic === undefined) {
-        this.setState({ isArticlesByTopic: false });
-      } else {
-        this.fetchArticlesByTopic(this.props.topic);
-        this.setState({ isArticlesByTopic: true });
-      }
+    const { id, topic } = this.props;
+    if (topic !== prevProps.topic) {
+      if (topic !== undefined) this.fetchArticlesByTopic(topic);
+    }
+    if (id !== prevProps.id) {
+      if (id !== undefined) this.fetchArticleById(id);
     }
   }
 
@@ -38,7 +49,17 @@ class Content extends Component {
   fetchArticlesByTopic = topic => {
     api
       .getArticlesByTopic(topic)
-      .then(articlesByTopic => this.setState({ articlesByTopic }));
+      .then(articlesByTopic =>
+        this.setState({ articlesByTopic, isArticleByTopic: true }),
+      );
+  };
+
+  fetchArticleById = article => {
+    api
+      .getArticleById(article)
+      .then(singleArticle =>
+        this.setState({ singleArticle, isSingleArticle: true }),
+      );
   };
 }
 
