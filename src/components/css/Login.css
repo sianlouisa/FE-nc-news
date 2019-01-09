@@ -1,5 +1,5 @@
-.sidebar {
+.login {
   border-style: solid;
   border-color: black;
-  grid-area: sidebar;
+  grid-area: login;
 }
