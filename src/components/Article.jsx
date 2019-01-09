@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import Comments from './CommentsList';
-
+import Delete from './Delete';
 import PostComment from './PostComment';
 
 class Article extends Component {
@@ -17,6 +17,7 @@ class Article extends Component {
         <p>Time: {article.created_at}</p>
         <p>Comments: {article.comment_count}</p>
         <p>Votes: {article.votes}</p>
+        <Delete articleId={article.article_id} />
         <PostComment user={user} articleId={article.article_id} />
         <Comments comments={comments} />
       </>

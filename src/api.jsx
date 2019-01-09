@@ -81,3 +81,14 @@ export const postCommentOnArticle = async newComment => {
   );
   return data;
 };
+
+export const deleteItem = async toDelete => {
+  console.log(toDelete);
+  const { data } = await axios
+    .delete(`${BASE_URL}/articles/${toDelete}`, {
+      'Content-Type': 'application/json',
+    })
+    .then(del => console.log(del));
+
+  return data;
+};
