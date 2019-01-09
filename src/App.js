@@ -11,9 +11,9 @@ import Search from './components/Search';
 import Date from './components/Date';
 import Auth from './components/Auth';
 import Users from './components/Users';
-import * as api from './api';
 import PostTopic from './components/PostTopic';
 import PostArticle from './components/PostArticle';
+import * as api from './api';
 
 class App extends Component {
   state = { user: {}, topics: [] };
@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App">
         <Auth handleSubmit={this.handleSubmit} user={user}>
           <Header />
-          <Login />
+          <Login user={user} />
           <Search />
           <NavBar />
           <Router className="content">
