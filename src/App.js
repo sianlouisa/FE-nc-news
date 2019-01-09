@@ -30,7 +30,7 @@ class App extends Component {
           <Router className="content">
             <Content path="/" />
             <Content path="/topics/:topic/articles" />
-            <Content path="/articles/:id" />
+            <Content path="/articles/:id" user={user} />
             <Users path="/users" />
             <Users path="/users/:id" />
             <PostTopic path="/post/topic" />

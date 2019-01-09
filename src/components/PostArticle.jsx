@@ -11,7 +11,6 @@ class PostArticle extends Component {
   };
   render() {
     const { topics } = this.props;
-    console.log(this.state);
     return (
       <form className="article-form" onSubmit={this.handleSubmit}>
         <label htmlFor="newArticle" />
@@ -42,7 +41,7 @@ class PostArticle extends Component {
 
   componentDidMount() {
     const created_by = this.props.user.user_id;
-    this.setState({ created_by }, () => console.log(this.state));
+    this.setState({ created_by });
   }
 
   handleTitleChange = event => {
@@ -62,10 +61,7 @@ class PostArticle extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api
-      .postArticle(this.state)
-      .then(article => console.log(article))
-      .catch(err => console.log(err));
+    api.postArticle(this.state);
   };
 }
 

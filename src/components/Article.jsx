@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import Comments from './CommentsList';
 
+import PostComment from './PostComment';
+
 class Article extends Component {
   state = { comments: [] };
   render() {
-    const { article } = this.props;
+    const { article, user } = this.props;
     const { comments } = this.state;
     return (
       <>
@@ -15,6 +17,7 @@ class Article extends Component {
         <p>Time: {article.created_at}</p>
         <p>Comments: {article.comment_count}</p>
         <p>Votes: {article.votes}</p>
+        <PostComment user={user} articleId={article.article_id} />
         <Comments comments={comments} />
       </>
     );

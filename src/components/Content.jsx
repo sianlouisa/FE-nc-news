@@ -33,7 +33,7 @@ class Content extends Component {
         </>
       );
     } else if (isSingleArticle) {
-      return <Article article={singleArticle} />;
+      return <Article article={singleArticle} user={this.props.user} />;
     }
     return (
       <>
