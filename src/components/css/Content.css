@@ -22,7 +22,7 @@
   margin: 10px;
 }
 
-.sort {
+.options {
   grid-area: sort;
   border-style: solid;
   border-color: black;
