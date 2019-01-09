@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import Comments from '../components/Comments';
+import Comments from './CommentsList';
 
 class Article extends Component {
   state = { comments: [] };
-
   render() {
     const { article } = this.props;
     const { comments } = this.state;
@@ -26,9 +25,7 @@ class Article extends Component {
   }
 
   fetchComments = id => {
-    api
-      .getArticleComments(id)
-      .then(comments => this.setState({ comments, isComments: true }));
+    api.getArticleComments(id).then(comments => this.setState({ comments }));
   };
 }
 

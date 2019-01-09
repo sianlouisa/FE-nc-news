@@ -9,13 +9,14 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import Search from './components/Search';
 import Date from './components/Date';
-import Auth from './components/Auth';
+// import Auth from './components/Auth';
+import Users from './components/Users';
 import * as api from './api';
+import PostTopic from './components/PostTopic';
 
 class App extends Component {
   state = { user: {} };
   render() {
-    const { user } = this.state;
     return (
       <div className="App">
         {/* <Auth handleSubmit={this.handleSubmit} user={user}> */}
@@ -27,6 +28,9 @@ class App extends Component {
           <Content path="/" />
           <Content path="/topics/:topic/articles" />
           <Content path="/articles/:id" />
+          <Users path="/users" />
+          <Users path="/users/:id" />
+          <PostTopic path="/post/topic" />
         </Router>
         <Sidebar />
         <Footer />
@@ -38,9 +42,7 @@ class App extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const user = event.target.username.value;
-    api
-      .getUserById(user)
-      .then(user => this.setState({ user, isLoggedIn: true }));
+    api.getUserById(user).then(user => this.setState({ user }));
   };
 }
 

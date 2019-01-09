@@ -45,3 +45,16 @@ export const articleSortBy = async sortBy => {
   );
   return data.articles;
 };
+
+export const getUsers = async () => {
+  const { data } = await axios.get(`${BASE_URL}/users`);
+  return data;
+};
+
+export const postTopic = async newTopic => {
+  const { data } = await axios.post(`${BASE_URL}/topics`, {
+    description: newTopic.description,
+    slug: newTopic.slug,
+  });
+  console.log(data);
+};

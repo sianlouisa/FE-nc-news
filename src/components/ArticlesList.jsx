@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import Article from './Article';
 
 class List extends Component {
   render() {
     const { articles, handleClick } = this.props;
-    return Array.isArray(articles) ? (
+    return (
       <>
         <ul className="list">
           {articles.map(article => (
@@ -26,8 +25,6 @@ class List extends Component {
           ))}
         </ul>
       </>
-    ) : (
-      <Article article={articles} />
     );
   }
 }
