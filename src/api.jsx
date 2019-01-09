@@ -58,3 +58,16 @@ export const postTopic = async newTopic => {
   });
   return data;
 };
+
+export const postArticle = async newArticle => {
+  const { data } = await axios.post(
+    `${BASE_URL}/topics/${newArticle.topic}/articles`,
+    {
+      title: newArticle.title,
+      body: newArticle.body,
+      user_id: newArticle.created_by,
+    },
+  );
+  console.log(data);
+  return data;
+};

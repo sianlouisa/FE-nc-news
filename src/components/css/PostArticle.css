@@ -1,0 +1,21 @@
+.article-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.article-title {
+  margin: 20px;
+  width: 400px;
+}
+
+.article-body {
+  margin: 20px;
+  width: 400px;
+  height: 500px;
+}
+
+.select-topic {
+  margin: 20px;
+}

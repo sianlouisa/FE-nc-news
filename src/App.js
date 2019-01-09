@@ -16,10 +16,10 @@ import PostTopic from './components/PostTopic';
 import PostArticle from './components/PostArticle';
 
 class App extends Component {
-  state = { user: {} };
+  state = { user: {}, topics: [] };
 
   render() {
-    const { user } = this.state;
+    const { user, topics } = this.state;
     return (
       <div className="App">
         <Auth handleSubmit={this.handleSubmit} user={user}>
@@ -34,7 +34,7 @@ class App extends Component {
             <Users path="/users" />
             <Users path="/users/:id" />
             <PostTopic path="/post/topic" />
-            <PostArticle path="/post/article" />
+            <PostArticle path="/post/article" user={user} topics={topics} />
           </Router>
           <Sidebar />
           <Footer />
@@ -46,7 +46,12 @@ class App extends Component {
 
   componentDidMount() {
     this.getUser();
+    this.fetchTopics();
   }
+
+  fetchTopics = () => {
+    api.getTopics().then(topics => this.setState({ topics }));
+  };
 
   saveUser = () => {
     const user = this.state.user;
