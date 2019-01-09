@@ -56,5 +56,5 @@ export const postTopic = async newTopic => {
     description: newTopic.description,
     slug: newTopic.slug,
   });
-  console.log(data);
+  return data;
 };

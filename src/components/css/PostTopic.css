@@ -1,0 +1,17 @@
+.topic-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.topic-name {
+  width: 200px;
+  margin: 20px;
+}
+
+.topic-description {
+  width: 400px;
+  height: 50px;
+  margin: 20px;
+}
