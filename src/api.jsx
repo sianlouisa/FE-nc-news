@@ -68,6 +68,16 @@ export const postArticle = async newArticle => {
       user_id: newArticle.created_by,
     },
   );
-  console.log(data);
+  return data;
+};
+
+export const postCommentOnArticle = async newComment => {
+  const { data } = await axios.post(
+    `${BASE_URL}/articles/${newComment.article_id}/comments`,
+    {
+      user_id: newComment.user_id,
+      body: newComment.body,
+    },
+  );
   return data;
 };
