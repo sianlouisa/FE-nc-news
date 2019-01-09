@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 import '../components/css/Content.css';
 import * as api from '../api';
-import List from './List';
-import Sortoptions from './Sortoptions';
+import List from './ArticlesList';
+import Options from './Options';
+import Article from './Article';
 
 class Content extends Component {
   state = {
     articles: [],
     articlesByTopic: [],
     singleArticle: [],
-    limitArticles: [],
-    sortedArticles: [],
     isArticlesByTopic: false,
     isSingleArticle: false,
-    isLimit: false,
-    isSorted: false,
   };
   render() {
-    console.log(this.props);
     const {
       articles,
       articlesByTopic,
@@ -29,7 +25,7 @@ class Content extends Component {
     if (isArticlesByTopic) {
       return (
         <>
-          <Sortoptions
+          <Options
             handleLimitClick={this.handleLimitClick}
             handleSortClick={this.handleSortClick}
           />
@@ -37,11 +33,11 @@ class Content extends Component {
         </>
       );
     } else if (isSingleArticle) {
-      return <List articles={singleArticle} />;
+      return <Article article={singleArticle} />;
     }
     return (
       <>
-        <Sortoptions
+        <Options
           handleLimitClick={this.handleLimitClick}
           handleSortClick={this.handleSortClick}
         />
