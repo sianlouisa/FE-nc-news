@@ -1,10 +1,9 @@
 import React from 'react';
-import '../components/css/Content.css';
 
 const Sortoptions = props => {
   const options = ['title', 'votes', 'author', 'created_at', 'comment_count'];
   return (
-    <div className="sort">
+    <div>
       <div className="limit">
         <span>View</span>{' '}
         <span onClick={props.handleLimitClick} id="5">
