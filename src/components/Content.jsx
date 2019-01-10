@@ -3,24 +3,15 @@ import '../components/css/Content.css';
 import * as api from '../api';
 import List from './ArticlesList';
 import Options from './Options';
-import Article from './Article';
 
 class Content extends Component {
   state = {
     articles: [],
     articlesByTopic: [],
-    singleArticle: [],
     isArticlesByTopic: false,
-    isSingleArticle: false,
   };
   render() {
-    const {
-      articles,
-      articlesByTopic,
-      singleArticle,
-      isArticlesByTopic,
-      isSingleArticle,
-    } = this.state;
+    const { articles, articlesByTopic, isArticlesByTopic } = this.state;
 
     if (isArticlesByTopic) {
       return (
@@ -32,8 +23,6 @@ class Content extends Component {
           <List articles={articlesByTopic} />
         </>
       );
-    } else if (isSingleArticle) {
-      return <Article article={singleArticle} user={this.props.user} />;
     }
     return (
       <>
@@ -50,15 +39,11 @@ class Content extends Component {
     this.fetchAllArticles();
   }
 
-  componentDidUpdate(prevProps) {
-    const { id, topic } = this.props;
-    if (topic !== prevProps.topic) {
-      if (topic !== undefined) this.fetchArticlesByTopic(topic);
+  componentDidUpdate(prevProps, prevState) {
+    const { topic } = this.props;
+    if (topic !== prevProps.topic && topic !== undefined) {
+      this.fetchArticlesByTopic(topic);
       this.setState({ isArticlesByTopic: false });
-    }
-    if (id !== prevProps.id) {
-      if (id !== undefined) this.fetchArticleById(id);
-      this.setState({ isSingleArticle: false });
     }
   }
 
@@ -81,14 +66,6 @@ class Content extends Component {
       .getArticlesByTopic(topic)
       .then(articlesByTopic =>
         this.setState({ articlesByTopic, isArticlesByTopic: true }),
-      );
-  };
-
-  fetchArticleById = article => {
-    api
-      .getArticleById(article)
-      .then(singleArticle =>
-        this.setState({ singleArticle, isSingleArticle: true }),
       );
   };
 

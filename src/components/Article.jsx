@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import Comments from './CommentsList';
+import CommentsList from './CommentsList';
 import Delete from './Delete';
-import PostComment from './PostComment';
+
+import Modify from './Modify';
 
 class Article extends Component {
-  state = { comments: [] };
+  state = { comments: [], article: [] };
   render() {
-    const { article, user } = this.props;
-    const { comments } = this.state;
+    const { user } = this.props;
+    const { article, comments } = this.state;
     return (
       <>
         <h2>{article.title}</h2>
@@ -17,16 +18,25 @@ class Article extends Component {
         <p>Time: {article.created_at}</p>
         <p>Comments: {article.comment_count}</p>
         <p>Votes: {article.votes}</p>
+        <Modify articleId={article.article_id} />
         <Delete articleId={article.article_id} />
-        <PostComment user={user} articleId={article.article_id} />
-        <Comments comments={comments} />
+        <CommentsList
+          user={user}
+          comments={comments}
+          articleId={article.article_id}
+        />
       </>
     );
   }
 
   componentDidMount() {
-    this.fetchComments(this.props.article.article_id);
+    this.fetchArticlesById(this.props.id);
+    this.fetchComments(this.props.id);
   }
+
+  fetchArticlesById = article_id => {
+    api.getArticleById(article_id).then(article => this.setState({ article }));
+  };
 
   fetchComments = id => {
     api.getArticleComments(id).then(comments => this.setState({ comments }));

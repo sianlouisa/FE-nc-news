@@ -14,6 +14,7 @@ import Users from './components/Users';
 import PostTopic from './components/PostTopic';
 import PostArticle from './components/PostArticle';
 import * as api from './api';
+import Article from './components/Article';
 
 class App extends Component {
   state = { user: {}, topics: [] };
@@ -30,7 +31,7 @@ class App extends Component {
           <Router className="content">
             <Content path="/" />
             <Content path="/topics/:topic/articles" />
-            <Content path="/articles/:id" user={user} />
+            <Article path="/articles/:id" user={user} />
             <Users path="/users" />
             <Users path="/users/:id" />
             <PostTopic path="/post/topic" />

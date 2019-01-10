@@ -4,14 +4,13 @@ import * as api from '../api';
 
 class PostComment extends Component {
   state = {
-    user_id: '',
     body: '',
   };
   render() {
     return (
       <form className="comment-form" onSubmit={this.handleSubmit}>
         <label htmlFor="newComment" />
-        Comment:{' '}
+        Comment:
         <input
           id="newComment"
           className="comment-text"
@@ -22,21 +21,16 @@ class PostComment extends Component {
     );
   }
 
-  componentDidMount() {
-    this.setState({
-      user_id: this.props.user.user_id,
-      article_id: this.props.articleId,
-    });
-  }
-
   handleChange = event => {
     const body = event.target.value;
     this.setState({ body });
   };
 
   handleSubmit = event => {
+    const { article_id, user_id } = this.props;
+    const { body } = this.state;
     event.preventDefault();
-    api.postCommentOnArticle(this.state).then(cmnt => console.log(cmnt));
+    api.postCommentOnArticle({ body, article_id, user_id });
   };
 }
 

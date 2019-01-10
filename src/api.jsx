@@ -29,7 +29,7 @@ export const getUserById = async user_id => {
 
 export const getArticleComments = async article_id => {
   const { data } = await axios.get(
-    `${BASE_URL}/articles/${article_id}/comments`,
+    `${BASE_URL}/articles/${article_id}/comments?sort_by=created_at`,
   );
   return data.comments;
 };
@@ -82,13 +82,20 @@ export const postCommentOnArticle = async newComment => {
   return data;
 };
 
-export const deleteItem = async toDelete => {
-  console.log(toDelete);
-  const { data } = await axios
-    .delete(`${BASE_URL}/articles/${toDelete}`, {
-      'Content-Type': 'application/json',
-    })
-    .then(del => console.log(del));
+export const deleteItem = async article_id => {
+  const { data } = await axios.delete(`${BASE_URL}/articles/${article_id}`);
 
+  return data;
+};
+
+export const patchItem = async modArticle => {
+  const { data } = await axios.patch(
+    `${BASE_URL}/articles/${modArticle.article_id}`,
+    {
+      title: modArticle.title,
+      body: modArticle.body,
+      user_id: modArticle.created_by,
+    },
+  );
   return data;
 };
