@@ -6,9 +6,7 @@ import Header from './components/Header';
 import NavBar from './components/Nav';
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
-import Footer from './components/Footer';
 import Login from './components/Login';
-import Search from './components/Search';
 import Date from './components/Date';
 import Auth from './components/Auth';
 import Users from './components/Users';
@@ -27,7 +25,6 @@ class App extends Component {
         <Auth handleSubmit={this.handleSubmit} user={user}>
           <Header />
           <Login user={user} />
-          <Search />
           <NavBar />
           <Router className="content">
             <Content path="/" />
@@ -39,7 +36,6 @@ class App extends Component {
             <PostArticle path="/post/article" user={user} topics={topics} />
           </Router>
           <Sidebar />
-          <Footer />
           <Date />
         </Auth>
       </div>

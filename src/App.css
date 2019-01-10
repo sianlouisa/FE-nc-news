@@ -2,6 +2,6 @@
   text-align: center;
   height: 100vh;
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
-  grid-template-areas: 'header login search' 'nav nav nav' 'content content sidebar' 'footer footer date';
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+  grid-template-areas: 'header login date' 'nav nav nav' 'content content sidebar';
 }
