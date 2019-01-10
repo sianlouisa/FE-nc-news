@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import * as api from './api';
 import { Router } from '@reach/router';
 import Header from './components/Header';
 import NavBar from './components/Nav';
@@ -13,7 +14,6 @@ import Auth from './components/Auth';
 import Users from './components/Users';
 import PostTopic from './components/PostTopic';
 import PostArticle from './components/PostArticle';
-import * as api from './api';
 import Article from './components/Article';
 import ArticlesByTopicList from './components/ArticlesByTopicList';
 
