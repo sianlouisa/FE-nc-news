@@ -1,10 +1,13 @@
 import React from 'react';
 import '../components/css/Header.css';
+import { Link } from '@reach/router';
 
 const Header = () => {
   return (
     <div className="header">
-      <h1>NC News</h1>
+      <Link to="/">
+        <h1>NC News</h1>
+      </Link>
     </div>
   );
 };
