@@ -1,50 +1,33 @@
 import React, { Component } from 'react';
 import '../components/css/Content.css';
 import * as api from '../api';
-import List from './ArticlesList';
-import Options from './Options';
+import ArticlesList from './ArticlesList';
+import ArticlesByTopicList from './ArticlesByTopicList';
 
 class Content extends Component {
   state = {
     articles: [],
-    articlesByTopic: [],
-    isArticlesByTopic: false,
+    isAllArticles: false,
   };
   render() {
-    const { articles, articlesByTopic, isArticlesByTopic } = this.state;
-
-    if (isArticlesByTopic) {
-      return (
-        <>
-          <Options
-            handleLimitClick={this.handleLimitClick}
-            handleSortClick={this.handleSortClick}
-          />
-          <List articles={articlesByTopic} />
-        </>
-      );
-    }
-    return (
-      <>
-        <Options
-          handleLimitClick={this.handleLimitClick}
-          handleSortClick={this.handleSortClick}
-        />
-        <List articles={articles} />
-      </>
+    const { articles, isAllArticles } = this.state;
+    return !isAllArticles ? (
+      <ArticlesByTopicList
+        handleLimitClick={this.handleLimitClick}
+        handleSortClick={this.handleSortClick}
+        topic={this.props.topic}
+      />
+    ) : (
+      <ArticlesList
+        articles={articles}
+        handleLimitClick={this.handleLimitClick}
+        handleSortClick={this.handleSortClick}
+      />
     );
   }
 
   componentDidMount() {
     this.fetchAllArticles();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const { topic } = this.props;
-    if (topic !== prevProps.topic && topic !== undefined) {
-      this.fetchArticlesByTopic(topic);
-      this.setState({ isArticlesByTopic: false });
-    }
   }
 
   handleLimitClick = event => {
@@ -58,15 +41,9 @@ class Content extends Component {
   };
 
   fetchAllArticles = () => {
-    api.getArticles().then(articles => this.setState({ articles }));
-  };
-
-  fetchArticlesByTopic = topic => {
     api
-      .getArticlesByTopic(topic)
-      .then(articlesByTopic =>
-        this.setState({ articlesByTopic, isArticlesByTopic: true }),
-      );
+      .getArticles()
+      .then(articles => this.setState({ articles, isAllArticles: true }));
   };
 
   fetchSortedArticles = sortBy => {

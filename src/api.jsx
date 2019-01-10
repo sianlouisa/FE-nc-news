@@ -7,14 +7,14 @@ export const getTopics = async () => {
   return data.topics;
 };
 
-export const getArticlesByTopic = async topic => {
-  const { data } = await axios.get(`${BASE_URL}/topics/${topic}/articles`);
-  return data.articles;
-};
-
-export const getArticles = async () => {
-  const { data } = await axios.get(`${BASE_URL}/articles`);
-  return data.articles;
+export const getArticles = async topic => {
+  if (topic === undefined) {
+    const { data } = await axios.get(`${BASE_URL}/articles`);
+    return data.articles;
+  } else {
+    const { data } = await axios.get(`${BASE_URL}/topics/${topic}/articles`);
+    return data.articles;
+  }
 };
 
 export const getArticleById = async article_id => {

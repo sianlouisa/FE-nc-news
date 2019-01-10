@@ -15,6 +15,7 @@ import PostTopic from './components/PostTopic';
 import PostArticle from './components/PostArticle';
 import * as api from './api';
 import Article from './components/Article';
+import ArticlesByTopicList from './components/ArticlesByTopicList';
 
 class App extends Component {
   state = { user: {}, topics: [] };
@@ -30,7 +31,7 @@ class App extends Component {
           <NavBar />
           <Router className="content">
             <Content path="/" />
-            <Content path="/topics/:topic/articles" />
+            <ArticlesByTopicList path="/topics/:topic/articles" />
             <Article path="/articles/:id" user={user} />
             <Users path="/users" />
             <Users path="/users/:id" />
