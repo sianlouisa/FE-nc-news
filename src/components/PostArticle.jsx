@@ -7,7 +7,7 @@ class PostArticle extends Component {
     title: '',
     body: '',
     topic: '',
-    uesr_id: '',
+    user_id: '',
   };
   render() {
     const { topics } = this.props;
