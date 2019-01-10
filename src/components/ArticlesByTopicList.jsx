@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import Options from './Options';
+import Vote from './Vote';
 import * as api from '../api';
 
 class ArticlesByTopicList extends Component {
-  state = { articles: [] };
+  state = { articles: [], noArticles: true };
   render() {
     const { handleClick, handleLimitClick, handleSortClick } = this.props;
-    const { articles } = this.state;
-    return articles.length === 0 ? (
-      <p>hello</p>
+    const { articles, noArticles } = this.state;
+    return !noArticles ? (
+      <>
+        <p>No articles for this topic yet!</p>
+        <Link to="/post/article">
+          <p>Click to post first article</p>
+        </Link>
+      </>
     ) : (
       <>
         <Options
@@ -30,7 +36,7 @@ class ArticlesByTopicList extends Component {
               <p>Author: {article.author}</p>
               <p>Time: {article.created_at}</p>
               <p>Comments: {article.comment_count}</p>
-              <p>Votes: {article.votes}</p>
+              <Vote article_id={article.article_id} votes={article.votes} />
             </li>
           ))}
         </ul>
@@ -40,15 +46,21 @@ class ArticlesByTopicList extends Component {
   componentDidMount() {
     const { topic } = this.props;
     this.fetchArticlesByTopic(topic);
+    console.log('mount');
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { topic } = this.props;
-    if (prevProps.topic !== topic) this.fetchArticlesByTopic(topic);
+    if (prevProps.topic !== topic)
+      this.fetchArticlesByTopic(topic).catch(err =>
+        this.setState({ noArticles: false }),
+      );
   }
 
   fetchArticlesByTopic = topic => {
-    api.getArticles(topic).then(articles => this.setState({ articles }));
+    return api
+      .getArticles(topic)
+      .then(articles => this.setState({ articles, noArticles: true }));
   };
 }
 
