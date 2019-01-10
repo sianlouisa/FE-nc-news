@@ -7,7 +7,6 @@ class CommentsList extends Component {
   render() {
     const { newComment, isNewComment } = this.state;
     const { user, comments, articleId } = this.props;
-    console.log(newComment);
     return !isNewComment ? (
       <>
         <PostComment

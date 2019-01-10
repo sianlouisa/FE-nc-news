@@ -46,7 +46,6 @@ class ArticlesByTopicList extends Component {
   componentDidMount() {
     const { topic } = this.props;
     this.fetchArticlesByTopic(topic);
-    console.log('mount');
   }
 
   componentDidUpdate(prevProps, prevState) {

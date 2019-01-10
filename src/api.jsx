@@ -78,7 +78,6 @@ export const postArticle = async newArticle => {
       created_by: newArticle.user_id,
     },
   );
-  console.log(data);
   return data;
 };
 
@@ -103,7 +102,6 @@ export const deleteItem = async article_id => {
 // PATCH
 
 export const vote = async toPatch => {
-  console.log(toPatch);
   const { data } = await axios.patch(
     `${BASE_URL}/articles/${toPatch.article_id}`,
     { inc_votes: toPatch.inc },

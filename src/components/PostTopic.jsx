@@ -43,7 +43,6 @@ class PostTopic extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.props);
     api
       .postTopic(this.state)
       .then(topic =>
