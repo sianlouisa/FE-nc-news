@@ -7,6 +7,8 @@ export const getTopics = async () => {
   return data.topics;
 };
 
+// ARTICLES
+
 export const getArticles = async topic => {
   if (topic === undefined) {
     const { data } = await axios.get(`${BASE_URL}/articles`);
@@ -22,10 +24,19 @@ export const getArticleById = async article_id => {
   return data.articles;
 };
 
+// USERS
+
+export const getUsers = async () => {
+  const { data } = await axios.get(`${BASE_URL}/users`);
+  return data;
+};
+
 export const getUserById = async user_id => {
   const { data } = await axios.get(`${BASE_URL}/users/${user_id}`);
   return data;
 };
+
+// COMMENTS
 
 export const getArticleComments = async article_id => {
   const { data } = await axios.get(
@@ -33,6 +44,8 @@ export const getArticleComments = async article_id => {
   );
   return data.comments;
 };
+
+// QUERIES
 
 export const articleLimits = async limit => {
   const { data } = await axios.get(`${BASE_URL}/articles?limit=${limit}`);
@@ -46,10 +59,7 @@ export const articleSortBy = async sortBy => {
   return data.articles;
 };
 
-export const getUsers = async () => {
-  const { data } = await axios.get(`${BASE_URL}/users`);
-  return data;
-};
+// POSTS
 
 export const postTopic = async newTopic => {
   const { data } = await axios.post(`${BASE_URL}/topics`, {
@@ -83,20 +93,20 @@ export const postCommentOnArticle = async newComment => {
   return data;
 };
 
+// DELETE
+
 export const deleteItem = async article_id => {
   const { data } = await axios.delete(`${BASE_URL}/articles/${article_id}`);
-
   return data;
 };
 
-export const patchItem = async modArticle => {
+// PATCH
+
+export const vote = async toPatch => {
+  console.log(toPatch);
   const { data } = await axios.patch(
-    `${BASE_URL}/articles/${modArticle.article_id}`,
-    {
-      title: modArticle.title,
-      body: modArticle.body,
-      user_id: modArticle.created_by,
-    },
+    `${BASE_URL}/articles/${toPatch.article_id}`,
+    { inc_votes: toPatch.inc },
   );
   return data;
 };
