@@ -3,8 +3,6 @@ import * as api from '../api';
 import CommentsList from './CommentsList';
 import Delete from './Delete';
 
-import Modify from './Modify';
-
 class Article extends Component {
   state = { comments: [], article: [] };
   render() {
@@ -18,7 +16,7 @@ class Article extends Component {
         <p>Time: {article.created_at}</p>
         <p>Comments: {article.comment_count}</p>
         <p>Votes: {article.votes}</p>
-        <Modify articleId={article.article_id} />
+
         <Delete articleId={article.article_id} />
         <CommentsList
           user={user}
