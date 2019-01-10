@@ -43,7 +43,12 @@ class PostTopic extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.postTopic(this.state);
+    console.log(this.props);
+    api
+      .postTopic(this.state)
+      .then(topic =>
+        this.props.navigate(`/topics/${topic.topic.slug}/articles`),
+      );
   };
 }
 
