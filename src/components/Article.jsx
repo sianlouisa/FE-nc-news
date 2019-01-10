@@ -16,7 +16,6 @@ class Article extends Component {
         <p>Time: {article.created_at}</p>
         <p>Comments: {article.comment_count}</p>
         <p>Votes: {article.votes}</p>
-
         <Delete articleId={article.article_id} />
         <CommentsList
           user={user}

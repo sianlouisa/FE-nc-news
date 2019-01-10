@@ -8,3 +8,8 @@
   border-color: black;
   margin: 10px;
 }
+
+#new-comment-item {
+  border-color: red;
+  border-style: solid;
+}

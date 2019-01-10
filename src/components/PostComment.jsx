@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../components/css/PostComment.css';
 import * as api from '../api';
+import { navigate } from '@reach/router';
 
 class PostComment extends Component {
   state = {
@@ -30,8 +31,9 @@ class PostComment extends Component {
     const { article_id, user_id } = this.props;
     const { body } = this.state;
     event.preventDefault();
-    api.postCommentOnArticle({ body, article_id, user_id });
+    api
+      .postCommentOnArticle({ body, article_id, user_id })
+      .then(comment => this.props.getNewComment(comment));
   };
 }
-
 export default PostComment;
