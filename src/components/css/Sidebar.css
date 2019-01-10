@@ -2,4 +2,18 @@
   border-style: solid;
   border-color: black;
   grid-area: sidebar;
+  height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.hot-articles {
+}
+
+#hot-article-item {
+  margin: 10px;
+  border-style: solid;
+  border-color: black;
 }

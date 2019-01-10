@@ -59,6 +59,13 @@ export const articleSortBy = async sortBy => {
   return data.articles;
 };
 
+export const getArticlesMostComments = async () => {
+  const { data } = await axios.get(
+    `${BASE_URL}/articles?sort_by=comment_count`,
+  );
+  return data.articles;
+};
+
 // POSTS
 
 export const postTopic = async newTopic => {
