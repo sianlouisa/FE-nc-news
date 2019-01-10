@@ -65,9 +65,10 @@ export const postArticle = async newArticle => {
     {
       title: newArticle.title,
       body: newArticle.body,
-      user_id: newArticle.created_by,
+      created_by: newArticle.user_id,
     },
   );
+  console.log(data);
   return data;
 };
 

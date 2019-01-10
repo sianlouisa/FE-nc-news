@@ -7,7 +7,7 @@ class PostArticle extends Component {
     title: '',
     body: '',
     topic: '',
-    created_by: '',
+    uesr_id: '',
   };
   render() {
     const { topics } = this.props;
@@ -40,8 +40,8 @@ class PostArticle extends Component {
   }
 
   componentDidMount() {
-    const created_by = this.props.user.user_id;
-    this.setState({ created_by });
+    const user_id = this.props.user.user_id;
+    this.setState({ user_id });
   }
 
   handleTitleChange = event => {
@@ -61,7 +61,9 @@ class PostArticle extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api.postArticle(this.state);
+    api
+      .postArticle(this.state)
+      .then(article => this.props.navigate(`/articles/${article.article_id}`));
   };
 }
 

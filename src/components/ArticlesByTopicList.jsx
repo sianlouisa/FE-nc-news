@@ -8,8 +8,9 @@ class ArticlesByTopicList extends Component {
   render() {
     const { handleClick, handleLimitClick, handleSortClick } = this.props;
     const { articles } = this.state;
-
-    return (
+    return articles.length === 0 ? (
+      <p>hello</p>
+    ) : (
       <>
         <Options
           handleLimitClick={handleLimitClick}
@@ -41,7 +42,7 @@ class ArticlesByTopicList extends Component {
     this.fetchArticlesByTopic(topic);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
     const { topic } = this.props;
     if (prevProps.topic !== topic) this.fetchArticlesByTopic(topic);
   }
