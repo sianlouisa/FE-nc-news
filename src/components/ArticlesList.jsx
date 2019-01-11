@@ -7,8 +7,10 @@ import * as api from '../api';
 class ArticlesList extends Component {
   state = {
     articles: [],
-    sort_by: '',
-    sort_ascending: '',
+    sort_by: 'votes',
+    sort_ascending: true,
+    p: 1,
+    limit: 10,
   };
   render() {
     const { handleClick } = this.props;
@@ -20,6 +22,8 @@ class ArticlesList extends Component {
           handleSortClick={this.handleSortClick}
           handleAscClick={this.handleAscClick}
           handleSubmit={this.handleSubmit}
+          handleBackPage={this.handleBackPage}
+          handleNextPage={this.handleNextPage}
         />
         <ul className="list">
           {articles.map(article => (
@@ -44,24 +48,24 @@ class ArticlesList extends Component {
   }
 
   componentDidMount() {
-    this.fetchAllArticles();
+    this.fetchAllArticles(undefined);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.topic !== this.props.topic) {
-      this.fetchAllArticles();
+      this.fetchAllArticles(undefined);
     }
   }
 
   fetchAllArticles = () => {
     api
-      .getArticles(this.props.topic)
+      .getArticles(undefined, this.props.topic)
       .then(articles => this.setState({ articles }));
   };
 
   handleLimitClick = event => {
     const limit = event.target.id;
-    this.fetchUpdatedLimitArticles(limit);
+    this.setState({ limit });
   };
 
   handleSortClick = event => {
@@ -74,24 +78,29 @@ class ArticlesList extends Component {
     this.setState({ sort_ascending });
   };
 
+  handleBackPage = dec => {
+    this.setState(state => ({
+      page: state.page + dec,
+    }));
+  };
+
+  handleNextPage = inc => {
+    this.setState(state => ({
+      page: state.page + inc,
+    }));
+  };
+
   handleSubmit = event => {
     event.preventDefault();
-    const { sort_by, sort_ascending } = this.state;
-    this.fetchSortedArticles({ sort_by, sort_ascending });
+    const { topic } = this.props;
+    const { sort_by, sort_ascending, p, limit } = this.state;
+    this.fetchSortedArticles({ sort_by, sort_ascending, p, limit }, topic);
   };
 
-  fetchSortedArticles = sortBy => {
-    const { topic } = this.props;
+  fetchSortedArticles = (sort, topic) => {
     api
-      .articleSortBy(sortBy, topic)
+      .getArticles(sort, topic)
       .then(sortedArticles => this.setState({ articles: sortedArticles }));
-  };
-
-  fetchUpdatedLimitArticles = limit => {
-    const { topic } = this.props;
-    api
-      .articleLimits(limit, topic)
-      .then(limitArticles => this.setState({ articles: limitArticles }));
   };
 }
 

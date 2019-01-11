@@ -3,5 +3,5 @@
   height: 100vh;
   display: grid;
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-  grid-template-areas: 'header login date' 'nav nav nav' 'content content sidebar';
+  grid-template-areas: 'header header header' 'nav nav nav' 'content content sidebar';
 }

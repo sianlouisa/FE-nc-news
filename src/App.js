@@ -6,8 +6,6 @@ import Header from './components/Header';
 import NavBar from './components/Nav';
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
-import Login from './components/Login';
-import Date from './components/Date';
 import Auth from './components/Auth';
 import Users from './components/Users';
 import PostTopic from './components/PostTopic';
@@ -23,20 +21,18 @@ class App extends Component {
     return (
       <div className="App">
         <Auth handleSubmit={this.handleSubmit} user={user}>
-          <Header />
-          <Login user={user} />
+          <Header user={user} />
           <NavBar />
           <Router className="content">
             <Content path="/" />
             <ArticlesList path="/topics/:topic/articles" />
             <Article path="/articles/:id" user={user} />
             <Users path="/users" />
-            <Users path="/users/:id" />
+            <Users path="/users/:username" />
             <PostTopic path="/post/topic" />
             <PostArticle path="/post/article" user={user} topics={topics} />
           </Router>
           <Sidebar />
-          <Date />
         </Auth>
       </div>
     );
@@ -64,7 +60,7 @@ class App extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const user = event.target.username.value;
-    api.getUserById(user).then(user => {
+    api.getUsers(user).then(user => {
       return this.setState({ user }, () => this.saveUser());
     });
   };

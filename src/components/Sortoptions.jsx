@@ -43,6 +43,12 @@ const Sortoptions = props => {
           />
           <button type="submit">Submit</button>
         </form>
+        <button onClick={() => props.handleBackPage(-1)} value="-1">
+          Back
+        </button>
+        <button onClick={() => props.handleNextPage(1)} value="1">
+          Next
+        </button>
       </div>
     </div>
   );

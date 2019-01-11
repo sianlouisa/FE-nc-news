@@ -3,34 +3,18 @@ import * as api from '../api';
 import UsersList from './UsersList';
 
 class Users extends Component {
-  state = { users: [], user: [], isSingleUser: false };
+  state = { users: [] };
 
   render() {
-    const { users, user, isSingleUser } = this.state;
-    return !isSingleUser ? (
-      <UsersList users={users} />
-    ) : (
-      <UsersList users={user} />
-    );
+    const { users } = this.state;
+    return <UsersList users={users} />;
   }
   componentDidMount() {
-    this.fetchUsers();
+    this.fetchUsers(this.props.username);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const userId = this.props.id;
-    if (userId !== prevProps.id) {
-      this.fetchUserById(this.props.id);
-      this.setState({ isSingleUser: true });
-    }
-  }
-
-  fetchUsers = () => {
-    api.getUsers().then(users => this.setState({ users }));
-  };
-
-  fetchUserById = user => {
-    api.getUserById(user).then(user => this.setState({ user }));
+  fetchUsers = user => {
+    api.getUsers(user).then(users => this.setState({ users }));
   };
 }
 

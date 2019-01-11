@@ -1,12 +1,14 @@
 import React from 'react';
 import '../components/css/Login.css';
+import { Link } from '@reach/router';
 
 const Login = props => {
-  const { name } = props.user;
+  const { name, username } = props.user;
   return (
     <div className="login">
-      <p>Welcome, {name}!</p>
-      <button>Logout</button>
+      <h2>
+        <Link to={`/users/${username}`}>Welcome, {name}!</Link>
+      </h2>
     </div>
   );
 };

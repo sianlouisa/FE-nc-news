@@ -1,5 +1,5 @@
 .login {
   border-style: solid;
   border-color: black;
-  grid-area: login;
+  width: 33vw;
 }

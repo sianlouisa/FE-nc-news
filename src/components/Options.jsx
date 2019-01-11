@@ -12,6 +12,8 @@ const Options = props => {
         handleSortClick={props.handleSortClick}
         handleAscClick={props.handleAscClick}
         handleSubmit={props.handleSubmit}
+        handleBackPage={props.handleBackPage}
+        handleNextPage={props.handleNextPage}
       />
     </div>
   );

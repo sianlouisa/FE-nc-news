@@ -2,4 +2,9 @@
   border-style: solid;
   border-color: black;
   grid-area: header;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  width: 100vw;
 }
