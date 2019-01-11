@@ -47,14 +47,32 @@ export const getArticleComments = async article_id => {
 
 // QUERIES
 
-export const articleLimits = async limit => {
-  const { data } = await axios.get(`${BASE_URL}/articles?limit=${limit}`);
+export const articleLimits = async (limit, topic) => {
+  if (topic === undefined) {
+    const { data } = await axios.get(`${BASE_URL}/articles?limit=${limit}`);
+    return data.articles;
+  }
+
+  const { data } = await axios.get(
+    `${BASE_URL}/topics/${topic}/articles?limit=${limit}`,
+  );
   return data.articles;
 };
 
-export const articleSortBy = async sortBy => {
+export const articleSortBy = async (sort, topic) => {
+  const { sort_ascending } = sort;
+  let ascStr = '';
+  if (sort_ascending) {
+    ascStr = '&sort_ascending=true';
+  }
+  if (topic === undefined) {
+    const { data } = await axios.get(
+      `${BASE_URL}/articles?sort_by=${sort.sort_by}${ascStr}`,
+    );
+    return data.articles;
+  }
   const { data } = await axios.get(
-    `${BASE_URL}/articles?sort_by=${sortBy}&sort_ascending=true`,
+    `${BASE_URL}/topics/${topic}/articles?sort_by=${sort.sort_by}${ascStr}`,
   );
   return data.articles;
 };

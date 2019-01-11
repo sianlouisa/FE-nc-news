@@ -1,17 +1,17 @@
 import React from 'react';
 import '../components/css/Content.css';
 import Sortoptions from './Sortoptions';
-import { Link } from '@reach/router';
+import PostOptions from './PostOptions';
 
 const Options = props => {
   return (
-    <div className="sort">
-      <Link to="/post/topic">Post Topic</Link>
-      {' | '}
-      <Link to="/post/article">Post Article</Link>
+    <div className="options">
+      <PostOptions />
       <Sortoptions
         handleLimitClick={props.handleLimitClick}
         handleSortClick={props.handleSortClick}
+        handleAscClick={props.handleAscClick}
+        handleSubmit={props.handleSubmit}
       />
     </div>
   );

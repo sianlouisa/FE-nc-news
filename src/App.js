@@ -13,7 +13,7 @@ import Users from './components/Users';
 import PostTopic from './components/PostTopic';
 import PostArticle from './components/PostArticle';
 import Article from './components/Article';
-import ArticlesByTopicList from './components/ArticlesByTopicList';
+import ArticlesList from './components/ArticlesList';
 
 class App extends Component {
   state = { user: {}, topics: [] };
@@ -28,7 +28,7 @@ class App extends Component {
           <NavBar />
           <Router className="content">
             <Content path="/" />
-            <ArticlesByTopicList path="/topics/:topic/articles" />
+            <ArticlesList path="/topics/:topic/articles" />
             <Article path="/articles/:id" user={user} />
             <Users path="/users" />
             <Users path="/users/:id" />

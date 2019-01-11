@@ -4,28 +4,43 @@
   overflow-x: hidden;
   border-style: solid;
   border-color: black;
+  background-color: pink;
   grid-area: content;
-  grid-template: 1fr 1fr / 1fr;
-  grid-template-areas: 'sort' 'list';
 }
 
 .list {
   border-style: solid;
-  border-color: black;
-  grid-area: list;
+  border-color: green;
   margin: 0px;
 }
 
 #article-item {
   border-style: solid;
-  border-color: black;
+  border-color: red;
   margin: 10px;
 }
 
 .options {
-  grid-area: sort;
+  background-color: yellow;
   border-style: solid;
-  border-color: black;
+  border-color: blue;
   margin: 0px;
   height: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.post-options {
+  background-color: red;
+}
+
+.sort {
+  background-color: blue;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#sort-option {
+  margin: 0px 0px 0px 20px;
 }
