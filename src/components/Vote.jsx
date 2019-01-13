@@ -9,13 +9,23 @@ class Vote extends Component {
     const { voteChange } = this.state;
     return (
       <>
-        <p>Votes: {votes + voteChange}</p>
-        <button onClick={() => this.vote(1)} disabled={voteChange === 1}>
-          Up
-        </button>
-        <button onClick={() => this.vote(-1)} disabled={voteChange === -1}>
-          Down
-        </button>
+        <div className="vote">
+          <button
+            className="mui-btn mui-btn--small mui-btn--primary mui-btn--fab"
+            onClick={() => this.vote(1)}
+            disabled={voteChange === 1}
+          >
+            +
+          </button>
+          {votes + voteChange}
+          <button
+            className="mui-btn mui-btn--small mui-btn--primary mui-btn--fab"
+            onClick={() => this.vote(-1)}
+            disabled={voteChange === -1}
+          >
+            -
+          </button>
+        </div>
       </>
     );
   }

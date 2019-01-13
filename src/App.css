@@ -9,37 +9,6 @@
   overflow-x: hidden;
 }
 
-.login-wrapper {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-  padding: 2%;
-  border-color: black;
-  border-style: dashed;
-}
-
-.form-signin {
-  height: 100%;
-}
-
-.form-control {
-  position: relative;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  height: auto;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-}
-
 /* HEADER */
 
 .header {
@@ -87,40 +56,58 @@
   height: 90vh;
   border-style: solid;
   border-color: orange;
-  background-color: lightblue;
+
+  overflow: scroll;
 }
 
-.list {
-  border-style: solid;
-  border-color: green;
+.article-list {
+  list-style: none;
 }
 
 #article-item {
-  border-style: solid;
-  border-color: red;
+  height: 100%;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: black;
   margin: 10px;
+  padding: 1%;
+  padding-top: 0%;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 'title title title title vote' 'card card card card card';
 }
 
-.article-details {
-  background-color: pink;
+.title {
+  grid-area: title;
+}
+
+.article-card {
+  grid-area: card;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+
+  align-items: center;
+}
+
+.vote {
+  grid-area: vote;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* OPTIONS */
 
-.options {
-  background-color: red;
-}
-
 .sort {
-  border-color: blue;
-  border-style: solid;
-  background-color: pink;
   display: flex;
   flex-direction: rows;
   justify-content: space-between;
+  padding: 1%;
+}
+
+/* SHRINK WITH PAGE */
+.sort-options {
 }
 
 /* ARTICLE */
@@ -183,19 +170,28 @@
   border-style: solid;
   border-color: purple;
   grid-area: sidebar;
-  overflow: scroll;
-  overflow-x: hidden;
+}
+
+.post-topic-button {
+  background-color: yellow;
+  padding: 2%;
+}
+.post-article-button {
+  background-color: yellow;
+  padding: 2%;
 }
 
 .nav {
   background-color: turquoise;
   border-style: solid;
   border-color: black;
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
 }
 
-.post-options {
-  background-color: yellow;
-  height: 50px;
+#topic-item {
+  margin: 5%;
 }
 
 .hot-articles {

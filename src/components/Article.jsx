@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as api from '../api';
 import CommentsList from './CommentsList';
 import Delete from './Delete';
+import Vote from './Vote';
 
 class Article extends Component {
   state = { comments: [], article: [] };
@@ -17,6 +18,7 @@ class Article extends Component {
         <p>Comments: {article.comment_count}</p>
         <p>Votes: {article.votes}</p>
         <Delete articleId={article.article_id} />
+        <Vote votes={article.votes} article_id={article.article_id} />
         <CommentsList
           user={user}
           comments={comments}

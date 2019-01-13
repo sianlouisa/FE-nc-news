@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../components/css/Comments.css';
+import '../App.css';
 import PostComment from './PostComment';
 
 class CommentsList extends Component {

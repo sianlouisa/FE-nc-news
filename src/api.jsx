@@ -10,6 +10,7 @@ export const getTopics = async () => {
 // ARTICLES
 
 export const getArticles = async (sort, topic) => {
+  console.log(sort);
   if (sort === undefined) {
     if (topic === undefined) {
       const { data } = await axios.get(`${BASE_URL}/articles`);
