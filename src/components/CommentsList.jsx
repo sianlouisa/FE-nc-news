@@ -1,58 +1,50 @@
 import React, { Component } from 'react';
 import '../App.css';
 import PostComment from './PostComment';
+import CommentsCard from './CommentsCard';
+import * as api from '../api';
 
 class CommentsList extends Component {
-  state = { newComment: [], isNewComment: false };
+  state = {
+    loadedComment: false,
+    comments: [],
+  };
+
   render() {
-    const { newComment, isNewComment } = this.state;
-    const { user, comments, articleId } = this.props;
-    return !isNewComment ? (
+    const { user, article_id } = this.props;
+    const { comments, loadedComments } = this.state;
+
+    return (
       <>
         <PostComment
           user_id={user.user_id}
           getNewComment={this.getNewComment}
-          article_id={articleId}
+          article_id={article_id}
         />
-        <ul className="comments">
-          {comments.map(comment => (
-            <li id="comment-item" key={comment.comment_id}>
-              {comment.author}
-              <br />
-              {comment.body}
-              <br />
-              {comment.created_at}
-            </li>
-          ))}
-        </ul>
-      </>
-    ) : (
-      <>
-        <p>Post Successful</p>
-        <ul className="comments">
-          <li id="new-comment-item" key={newComment.comment_id}>
-            {user.username}
-            <br />
-            {newComment.body}
-            <br />
-            {newComment.created_at}
-          </li>
-          {comments.map(comment => (
-            <li id="comment-item" key={comment.comment_id}>
-              {comment.author}
-              <br />
-              {comment.body}
-              <br />
-              {comment.created_at}
-            </li>
-          ))}
-        </ul>
+        {loadedComments && comments.length > 0 ? (
+          <CommentsCard comments={comments} article_id={article_id} />
+        ) : (
+          <p>Loading</p>
+        )}
+        {comments.length === 0 && <p>Be the first to comment!</p>}
       </>
     );
   }
 
-  getNewComment = newComment => {
-    this.setState({ newComment, isNewComment: true });
+  componentDidUpdate() {
+    this.fetchComments(this.props.article_id);
+  }
+
+  fetchComments = id => {
+    api
+      .getArticleComments(id)
+      .then(comments => this.setState({ comments, loadedComments: true }));
+  };
+
+  getNewComment = comment => {
+    this.setState({
+      comments: [...this.state.comments, comment],
+    });
   };
 }
 

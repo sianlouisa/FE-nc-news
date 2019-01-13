@@ -5,10 +5,10 @@ import Delete from './Delete';
 import Vote from './Vote';
 
 class Article extends Component {
-  state = { comments: [], article: [] };
+  state = { article: [] };
   render() {
     const { user } = this.props;
-    const { article, comments } = this.state;
+    const { article } = this.state;
     return (
       <>
         <h2>{article.title}</h2>
@@ -19,26 +19,17 @@ class Article extends Component {
         <p>Votes: {article.votes}</p>
         <Delete articleId={article.article_id} />
         <Vote votes={article.votes} article_id={article.article_id} />
-        <CommentsList
-          user={user}
-          comments={comments}
-          articleId={article.article_id}
-        />
+        <CommentsList user={user} article_id={article.article_id} />
       </>
     );
   }
 
   componentDidMount() {
     this.fetchArticlesById(this.props.id);
-    this.fetchComments(this.props.id);
   }
 
   fetchArticlesById = article_id => {
     api.getArticleById(article_id).then(article => this.setState({ article }));
-  };
-
-  fetchComments = id => {
-    api.getArticleComments(id).then(comments => this.setState({ comments }));
   };
 }
 

@@ -3,10 +3,20 @@ import { Link } from '@reach/router';
 
 const Welcome = props => {
   const { name, username } = props.user;
+  const { logout } = props;
   return (
-    <h2>
-      <Link to={`/users/${username}`}>Welcome, {name}!</Link>
-    </h2>
+    <>
+      <span>
+        <Link to={`/users/${username}`}>Welcome, {name}!</Link>
+      </span>
+      <button
+        className="mui-btn mui-btn--primary"
+        type="submit"
+        onClick={logout}
+      >
+        Logout
+      </button>
+    </>
   );
 };
 

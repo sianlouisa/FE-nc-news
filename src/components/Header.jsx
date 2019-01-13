@@ -1,17 +1,21 @@
 import React from 'react';
-import '../components/css/Header.css';
+import '../App.css';
 import { Link } from '@reach/router';
-import Login from './Login';
+import Welcome from './Welcome';
 
 const Header = props => {
-  const { user } = props;
+  const { user, logout } = props;
   return (
-    <div className="header">
-      <Link to="/">
-        <h1>NC News</h1>
-      </Link>
-      <Login user={user} />
-    </div>
+    <>
+      <div className="header">
+        <Link to="/">
+          <h1>NC News</h1>
+        </Link>
+      </div>
+      <div className="welcome">
+        <Welcome logout={logout} user={user} />
+      </div>
+    </>
   );
 };
 

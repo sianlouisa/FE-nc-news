@@ -10,7 +10,6 @@ export const getTopics = async () => {
 // ARTICLES
 
 export const getArticles = async (sort, topic) => {
-  console.log(sort);
   if (sort === undefined) {
     if (topic === undefined) {
       const { data } = await axios.get(`${BASE_URL}/articles`);
@@ -119,7 +118,9 @@ export const postArticle = async newArticle => {
     {
       title: newArticle.title,
       body: newArticle.body,
+      topic: newArticle.topic,
       created_by: newArticle.user_id,
+      article_id: newArticle.article_id,
     },
   );
   return data;
@@ -131,6 +132,7 @@ export const postCommentOnArticle = async newComment => {
     {
       user_id: newComment.user_id,
       body: newComment.body,
+      article_id: newComment.article_id,
     },
   );
   return data;
@@ -146,9 +148,19 @@ export const deleteItem = async article_id => {
 // PATCH
 
 export const vote = async toPatch => {
-  const { data } = await axios.patch(
-    `${BASE_URL}/articles/${toPatch.article_id}`,
-    { inc_votes: toPatch.inc },
-  );
-  return data;
+  const { article_id, inc, comment_id } = toPatch;
+  if (comment_id === undefined) {
+    const { data } = await axios.patch(
+      `${BASE_URL}/articles/${toPatch.article_id}`,
+      { inc_votes: inc },
+    );
+    return data;
+  } else {
+    const { data } = await axios.patch(
+      `${BASE_URL}/articles/${article_id}/comments/${comment_id}`,
+      { inc_votes: inc },
+    );
+    console.log(data);
+    return data;
+  }
 };

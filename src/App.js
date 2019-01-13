@@ -3,7 +3,7 @@ import './App.css';
 import * as api from './api';
 import { Router } from '@reach/router';
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
+import NavBar from './components/NavBar';
 import Auth from './components/Auth';
 import Users from './components/Users';
 import PostTopic from './components/PostTopic';
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <Auth handleSubmit={this.handleSubmit} user={user}>
-          <Header user={user} />
+          <Header user={user} logout={this.logout} />
           <Router className="content">
             <ArticlesList path="/" />
             <ArticlesList path="/topics/:topic/articles" />
@@ -29,7 +29,7 @@ class App extends Component {
             <PostTopic path="/post/topic" />
             <PostArticle path="/post/article" user={user} topics={topics} />
           </Router>
-          <Sidebar topics={topics} />
+          <NavBar topics={topics} />
         </Auth>
       </div>
     );
@@ -39,6 +39,11 @@ class App extends Component {
     this.getUser();
     this.fetchTopics();
   }
+
+  logout = () => {
+    localStorage.clear();
+    this.setState({ user: null });
+  };
 
   fetchTopics = () => {
     api.getTopics().then(topics => this.setState({ topics }));

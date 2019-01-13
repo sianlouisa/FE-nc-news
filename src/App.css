@@ -3,8 +3,8 @@
   height: 100vh;
   width: 100vw;
   display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr;
-  grid-template-areas: 'header login ' 'articles  sidebar';
+  grid-template: 1fr 1fr 1fr / 1fr 1fr;
+  grid-template-areas: 'header login' 'nav nav' 'articles articles';
   overflow: scroll;
   overflow-x: hidden;
 }
@@ -13,8 +13,7 @@
 
 .header {
   grid-area: header;
-  border-style: solid;
-  border-color: black;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -22,16 +21,12 @@
 
 .welcome {
   grid-area: login;
-  border-style: solid;
-  border-color: black;
 }
 
 /* COMMENTS */
 
 .comments {
-  border-style: solid;
-  border-color: black;
-  background-color: purple;
+  list-style: none;
 }
 
 #comment-item {
@@ -41,23 +36,13 @@
   margin: 10px;
 }
 
-#new-comment-item {
-  border-style: solid;
-  border-color: black;
-  background-color: pink;
-  border-style: solid;
-}
-
 /* CONTENT */
 
 .content {
   grid-area: articles;
-  width: 70vw;
-  height: 90vh;
-  border-style: solid;
-  border-color: orange;
 
-  overflow: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .article-list {
@@ -72,6 +57,7 @@
   margin: 10px;
   padding: 1%;
   padding-top: 0%;
+  padding-bottom: 0%;
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 'title title title title vote' 'card card card card card';
@@ -102,7 +88,7 @@
 .sort {
   display: flex;
   flex-direction: rows;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 1%;
 }
 
@@ -141,8 +127,8 @@
 }
 
 .comment-text {
-  height: 300px;
-  width: 300px;
+  height: 50px;
+  width: 500px;
   margin: 20px;
 }
 
@@ -166,39 +152,24 @@
 
 /* SIDEBAR */
 
-.sidebar {
-  border-style: solid;
-  border-color: purple;
-  grid-area: sidebar;
-}
-
-.post-topic-button {
-  background-color: yellow;
-  padding: 2%;
-}
-.post-article-button {
-  background-color: yellow;
-  padding: 2%;
-}
-
 .nav {
-  background-color: turquoise;
-  border-style: solid;
-  border-color: black;
+  grid-area: nav;
+}
+
+.post-links {
   display: flex;
-  flex-direction: column;
-  padding: 5%;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 2%;
+}
+
+#nav-link {
+  color: white;
+}
+
+.topics {
 }
 
 #topic-item {
   margin: 5%;
-}
-
-.hot-articles {
-}
-
-#hot-article-item {
-  margin: 10px;
-  border-style: solid;
-  border-color: black;
 }

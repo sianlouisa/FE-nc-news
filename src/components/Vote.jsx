@@ -31,8 +31,8 @@ class Vote extends Component {
   }
 
   vote = inc => {
-    const { article_id } = this.props;
-    api.vote({ article_id, inc });
+    const { article_id, comment_id } = this.props;
+    api.vote({ article_id, inc, comment_id });
     this.setState(state => ({ voteChange: state.voteChange + inc }));
   };
 }

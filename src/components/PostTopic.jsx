@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
-import '../components/css/PostTopic.css';
+import '../App.css';
 import * as api from '../api';
+import Form from 'muicss/lib/react/form';
+import Input from 'muicss/lib/react/input';
+import Textarea from 'muicss/lib/react/textarea';
+import Button from 'muicss/lib/react/button';
 
 class PostTopic extends Component {
   state = {
+    sent: false,
     slug: '',
     description: '',
+    error: false,
   };
   render() {
+    const { sent, slug, description, error } = this.state;
     return (
-      <form className="topic-form" onSubmit={this.handleSubmit}>
-        <label htmlFor="newTopic" />
-        Topic Name:
-        <input
-          id="newTopic"
-          className="topic-name"
-          onChange={this.handleSlugChange}
-        />
-        Decription:
-        <input
-          id="newTopic"
-          className="topic-description"
-          onChange={this.handleDescriptionChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <>
+        {error && <h2>Please fill out all fields</h2>}
+        {sent && <h2>Successfully Posted!</h2>}
+        <Form onSubmit={this.handleSubmit}>
+          <legend>Post Topic</legend>
+          <Input
+            placeholder="Topic"
+            onChange={this.handleSlugChange}
+            value={slug}
+          />
+          <Textarea
+            placeholder="Description"
+            onChange={this.handleDescriptionChange}
+            value={description}
+          />
+          <Button variant="raised">Submit</Button>
+        </Form>
+      </>
     );
   }
   handleSlugChange = event => {
@@ -43,11 +52,21 @@ class PostTopic extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    api
-      .postTopic(this.state)
-      .then(topic =>
-        this.props.navigate(`/topics/${topic.topic.slug}/articles`),
-      );
+    const topic = {
+      slug: this.state.slug,
+      description: this.state.description,
+    };
+    const topicArray = Object.values(topic);
+    topicArray.some(input => input.length < 1)
+      ? this.setState({ error: true })
+      : api.postTopic(this.state).then(topic =>
+          this.setState({
+            sent: true,
+            slug: '',
+            description: '',
+            error: false,
+          }),
+        );
   };
 }
 
