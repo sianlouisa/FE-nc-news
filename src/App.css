@@ -1,7 +1,208 @@
 .App {
   text-align: center;
   height: 100vh;
+  width: 100vw;
   display: grid;
-  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
-  grid-template-areas: 'header header header' 'nav nav nav' 'content content sidebar';
+  grid-template: 1fr 1fr / 1fr 1fr;
+  grid-template-areas: 'header login ' 'articles  sidebar';
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.login-wrapper {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 2%;
+  border-color: black;
+  border-style: dashed;
+}
+
+.form-signin {
+  height: 100%;
+}
+
+.form-control {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  height: auto;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* HEADER */
+
+.header {
+  grid-area: header;
+  border-style: solid;
+  border-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.welcome {
+  grid-area: login;
+  border-style: solid;
+  border-color: black;
+}
+
+/* COMMENTS */
+
+.comments {
+  border-style: solid;
+  border-color: black;
+  background-color: purple;
+}
+
+#comment-item {
+  border-style: solid;
+  border-color: black;
+  background-color: yellow;
+  margin: 10px;
+}
+
+#new-comment-item {
+  border-style: solid;
+  border-color: black;
+  background-color: pink;
+  border-style: solid;
+}
+
+/* CONTENT */
+
+.content {
+  grid-area: articles;
+  width: 70vw;
+  height: 90vh;
+  border-style: solid;
+  border-color: orange;
+  background-color: lightblue;
+}
+
+.list {
+  border-style: solid;
+  border-color: green;
+}
+
+#article-item {
+  border-style: solid;
+  border-color: red;
+  margin: 10px;
+}
+
+.article-details {
+  background-color: pink;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* OPTIONS */
+
+.options {
+  background-color: red;
+}
+
+.sort {
+  border-color: blue;
+  border-style: solid;
+  background-color: pink;
+  display: flex;
+  flex-direction: rows;
+  justify-content: space-between;
+}
+
+/* ARTICLE */
+
+.article-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.article-title {
+  margin: 20px;
+  width: 400px;
+}
+
+.article-body {
+  margin: 20px;
+  width: 400px;
+  height: 500px;
+}
+
+.select-topic {
+  margin: 20px;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-text {
+  height: 300px;
+  width: 300px;
+  margin: 20px;
+}
+
+.topic-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.topic-name {
+  width: 200px;
+  margin: 20px;
+}
+
+.topic-description {
+  width: 400px;
+  height: 50px;
+  margin: 20px;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+  border-style: solid;
+  border-color: purple;
+  grid-area: sidebar;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.nav {
+  background-color: turquoise;
+  border-style: solid;
+  border-color: black;
+}
+
+.post-options {
+  background-color: yellow;
+  height: 50px;
+}
+
+.hot-articles {
+}
+
+#hot-article-item {
+  margin: 10px;
+  border-style: solid;
+  border-color: black;
 }

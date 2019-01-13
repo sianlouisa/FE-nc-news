@@ -3,8 +3,6 @@ import './App.css';
 import * as api from './api';
 import { Router } from '@reach/router';
 import Header from './components/Header';
-import NavBar from './components/Nav';
-import Content from './components/Content';
 import Sidebar from './components/Sidebar';
 import Auth from './components/Auth';
 import Users from './components/Users';
@@ -22,9 +20,8 @@ class App extends Component {
       <div className="App">
         <Auth handleSubmit={this.handleSubmit} user={user}>
           <Header user={user} />
-          <NavBar />
           <Router className="content">
-            <Content path="/" />
+            <ArticlesList path="/" />
             <ArticlesList path="/topics/:topic/articles" />
             <Article path="/articles/:id" user={user} />
             <Users path="/users" />
@@ -32,7 +29,7 @@ class App extends Component {
             <PostTopic path="/post/topic" />
             <PostArticle path="/post/article" user={user} topics={topics} />
           </Router>
-          <Sidebar />
+          <Sidebar topics={topics} />
         </Auth>
       </div>
     );

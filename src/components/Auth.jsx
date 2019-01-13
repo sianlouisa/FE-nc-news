@@ -8,11 +8,24 @@ class Auth extends Component {
     return user !== null ? (
       children
     ) : (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username" />
-        <input value={username} id="username" onChange={this.handleChange} />
-        <button type="submit">Login</button>
-      </form>
+      <>
+        <div className="login-wrapper">
+          <form className="form-signin" onSubmit={handleSubmit}>
+            <h2>Please sign in</h2>
+            <input
+              type="username"
+              id="username"
+              value={username}
+              className="form-control"
+              placeholder="Username"
+              onChange={this.handleChange}
+              required
+            />
+            <p>(Please use jessjelly for username)</p>
+            <button type="submit">Sign in</button>
+          </form>
+        </div>
+      </>
     );
   }
 
