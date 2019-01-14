@@ -25,6 +25,7 @@ class App extends Component {
           <Router className="content">
             <ArticlesList path="/" />
             <ArticlesList path="/topics/:topic/articles" />
+            <Errors path="/error" />
             <Article path="/articles/:id" user={user} />
             <Users path="/users" />
             <User path="/users/:username" />

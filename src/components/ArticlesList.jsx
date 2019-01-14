@@ -54,14 +54,32 @@ class ArticlesList extends Component {
     api
       .getArticles(undefined, this.props.topic)
       .then(articles => this.setState({ articles }))
-      .catch(err => this.setState({ err }));
+      .catch(err => {
+        this.props.navigate('/error', {
+          replace: true,
+          state: {
+            code: err.code,
+            message: 'no articles',
+            from: `/topics/${this.props.topic}/articles}`,
+          },
+        });
+      });
   };
 
   fetchSortedArticles = (sort, topic) => {
     api
       .getArticles(sort, topic)
       .then(sortedArticles => this.setState({ articles: sortedArticles }))
-      .catch(err => this.setState({ err }));
+      .catch(err => {
+        this.props.navigate('/error', {
+          replace: true,
+          state: {
+            code: err.code,
+            message: 'no articles',
+            from: `/topics/${this.props.topic}/articles}`,
+          },
+        });
+      });
   };
 }
 
