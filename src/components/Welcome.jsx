@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from '@reach/router';
+import Button from 'muicss/lib/react/button';
 
 const Welcome = props => {
   const { name, username } = props.user;
@@ -7,15 +8,14 @@ const Welcome = props => {
   return (
     <>
       <span>
-        <Link to={`/users/${username}`}>Welcome, {name}!</Link>
+        {'Hi, '}
+        <Link to={`/users/${username}`}>{name}</Link>
+        {'!'}
       </span>
-      <button
-        className="mui-btn mui-btn--primary"
-        type="submit"
-        onClick={logout}
-      >
+      <br />
+      <Button size="small" type="submit" onClick={logout}>
         Logout
-      </button>
+      </Button>
     </>
   );
 };

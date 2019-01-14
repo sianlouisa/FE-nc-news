@@ -9,7 +9,7 @@ const Header = props => {
     <>
       <div className="header">
         <Link to="/">
-          <h1>NC News</h1>
+          <h1 className="home-link">NC News</h1>
         </Link>
       </div>
       <div className="welcome">

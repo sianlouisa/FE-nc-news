@@ -23,8 +23,6 @@
   max-width: 100%;
   max-height: 100%;
   padding: 2%;
-  border-color: black;
-  border-style: dashed;
 }
 
 .form-signin {
@@ -46,10 +44,8 @@
 
 .header {
   grid-area: header;
-
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
 }
 
 .welcome {
@@ -129,10 +125,6 @@
   flex-direction: rows;
   justify-content: space-evenly;
   padding: 1%;
-}
-
-/* SHRINK WITH PAGE */
-.sort-options {
 }
 
 /* ARTICLE */

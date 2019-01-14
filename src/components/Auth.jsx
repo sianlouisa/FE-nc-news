@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Button from 'muicss/lib/react/button';
 
 class Auth extends Component {
   state = { username: '' };
@@ -22,7 +23,9 @@ class Auth extends Component {
               required
             />
             <p>(Please use jessjelly for username)</p>
-            <button type="submit">Sign in</button>
+            <Button variant="raised" color="primary" type="submit">
+              Sign in
+            </Button>
           </form>
         </div>
       </>
