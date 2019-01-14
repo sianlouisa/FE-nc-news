@@ -11,12 +11,16 @@ class ArticlesList extends Component {
     articles: [],
     err: null,
   };
+
   render() {
     const { handleClick } = this.props;
     const { articles, err } = this.state;
     if (err) return <Errors />;
     return (
       <>
+        {this.props.location.state !== null && (
+          <h2>Article successfully deleted</h2>
+        )}
         <Options fetchSortedArticles={this.fetchSortedArticles} />
         <ul className="article-list">
           {articles.map(article => (

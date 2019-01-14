@@ -4,7 +4,6 @@ import Appbar from 'muicss/lib/react/appbar';
 import { Link } from '@reach/router';
 import Topics from './Topics';
 import Button from 'muicss/lib/react/button';
-import Divider from 'muicss/lib/react/divider';
 
 class NavBar extends Component {
   render() {

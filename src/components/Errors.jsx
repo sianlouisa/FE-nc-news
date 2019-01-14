@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from '@reach/router';
 
 const Errors = props => {
-  const { message } = props.location.state;
-  if (message === 'no articles') {
+  if (props.location.state.message === 'no articles') {
     return (
       <>
         <h2>No articles for this topic yet.</h2>
@@ -13,6 +12,7 @@ const Errors = props => {
       </>
     );
   }
+
   return <h2>{'Something went wrong! :( '}</h2>;
 };
 

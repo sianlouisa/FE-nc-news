@@ -12,10 +12,12 @@ class Article extends Component {
   state = { article: [], comments: [], loadedComments: false, err: null };
   render() {
     const { user } = this.props;
+    const { message } = this.props.location.state;
     const { article, loadedComments, comments, err } = this.state;
     if (err) return <Errors />;
     return (
       <>
+        {message === 'comment deleted' && <h2>Comment deleted</h2>}
         <h2>{article.title}</h2>
         <p>{article.body}</p>
         <span className="article">
@@ -28,7 +30,9 @@ class Article extends Component {
           </p>
           <p>Comments: {article.comment_count}</p>
           <Vote votes={article.votes} article_id={article.article_id} />
-          <Delete article_id={article.article_id} />
+          {article.author === user.username && (
+            <Delete article_id={article.article_id} />
+          )}
         </span>
         <PostComment
           user_id={user.user_id}

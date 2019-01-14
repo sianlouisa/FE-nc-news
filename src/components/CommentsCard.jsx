@@ -20,7 +20,7 @@ const CommentsCard = props => {
               article_id={article_id}
             />
             {comment.author === user.username ? (
-              <Delete comment_id={comment.comment_id} />
+              <Delete comment_id={comment.comment_id} article_id={article_id} />
             ) : null}
           </li>
         ))}

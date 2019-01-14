@@ -140,9 +140,18 @@ export const postCommentOnArticle = async newComment => {
 
 // DELETE
 
-export const deleteItem = async article_id => {
-  const { data } = await axios.delete(`${BASE_URL}/articles/${article_id}`);
-  return data;
+export const deleteItem = async id => {
+  if (id.comment_id === undefined) {
+    const { data } = await axios.delete(
+      `${BASE_URL}/articles/${id.article_id}`,
+    );
+    return data;
+  } else {
+    const { data } = await axios.delete(
+      `${BASE_URL}/articles/${id.article_id}/comments/${id.comment_id}`,
+    );
+    return data;
+  }
 };
 
 // PATCH
