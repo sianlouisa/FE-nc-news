@@ -26,7 +26,7 @@ class ArticlesList extends Component {
                 >
                   <h3>{article.title.toUpperCase()}</h3>
                 </Link>
-                <p>{article.body.slice(0, 300) + '...'}</p>
+                <p>{article.body.slice(0, 150) + '...'}</p>
               </div>
               <Vote article_id={article.article_id} votes={article.votes} />
               <ArticleCard article={article} />

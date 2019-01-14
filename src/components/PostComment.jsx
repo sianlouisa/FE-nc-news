@@ -37,7 +37,6 @@ class PostComment extends Component {
 
   handleSubmit = event => {
     const { article_id, user_id } = this.props;
-    console.log(this.props);
     const { body } = this.state;
     event.preventDefault();
     if (this.state.body.length === 0) {

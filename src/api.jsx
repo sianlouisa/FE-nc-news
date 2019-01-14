@@ -160,7 +160,6 @@ export const vote = async toPatch => {
       `${BASE_URL}/articles/${article_id}/comments/${comment_id}`,
       { inc_votes: inc },
     );
-    console.log(data);
     return data;
   }
 };

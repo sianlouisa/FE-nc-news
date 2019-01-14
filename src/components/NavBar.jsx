@@ -4,6 +4,7 @@ import Appbar from 'muicss/lib/react/appbar';
 import { Link } from '@reach/router';
 import Topics from './Topics';
 import Button from 'muicss/lib/react/button';
+import Divider from 'muicss/lib/react/divider';
 
 class NavBar extends Component {
   render() {
@@ -18,15 +19,30 @@ class NavBar extends Component {
               <tbody>
                 <tr style={s1}>
                   <td className="mui--appbar-height">
-                    <Button>
-                      <Link to="/post/topic">Post Topic</Link>
-                    </Button>
-                    <Button>
-                      <Link to="/post/article">Post Article</Link>
-                    </Button>
+                    <span>
+                      {' '}
+                      <Button>
+                        <Link to="/post/topic">Post Topic</Link>
+                      </Button>
+                    </span>
+                    <span className="mui--divider-left">
+                      <Button>
+                        <Link to="/post/article">Post Article</Link>
+                      </Button>
+                    </span>
                   </td>
+                  <td className="mui--appbar-height" />
                   <td className="mui--appbar-height" style={s2}>
-                    <Topics topics={topics} />
+                    <span>
+                      {' '}
+                      <Button>
+                        <Link to="/users">Users</Link>
+                      </Button>
+                    </span>
+                    <span className="mui--divider-left">
+                      {' '}
+                      <Topics topics={topics} />
+                    </span>
                   </td>
                 </tr>
               </tbody>

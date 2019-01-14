@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './css/Auth.css';
+import '../App.css';
 
 class Options extends Component {
   state = {

@@ -8,8 +8,7 @@ import Vote from './Vote';
 class Article extends Component {
   state = { article: [], comments: [], loadedComments: false };
   render() {
-    const { user, id } = this.props;
-    console.log(this.props);
+    const { user } = this.props;
     const { article, loadedComments, comments } = this.state;
     return (
       <>

@@ -1,18 +1,3 @@
-// import React from 'react';
-
-// const User = props => {
-//   console.log(props);
-//   return (
-//     <>
-//       {/* <h2>{users.username}'s Profile</h2>
-//       <p>Name: {users.name}</p>
-//       <img src={users.avatar_url} alt="profile" /> */}
-//     </>
-//   );
-// };
-
-// export default User;
-
 import React, { Component } from 'react';
 import * as api from '../api';
 
