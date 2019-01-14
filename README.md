@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## NC News - Front End
+# NC News - Front End
 
 A reddit-style news aggregator board built with React.js. Additional frameworks and libraries include Material UI, react-moments and reach-router.
 
@@ -8,12 +8,18 @@ Login functionality, able to view all articles/sort and view by particular topic
 
 ## Links
 
-Deployed: https://sian-nc-news.netlify.com/
-Backend API: https://sianncnews.herokuapp.com/api
-Backend Repo: https://github.com/sianlouisa/nc-news
+- Deployed Frontend: https://sian-nc-news.netlify.com/
+- Backend API: https://sianncnews.herokuapp.com/api
+- Backend Repo: https://github.com/sianlouisa/nc-news
 
 ## To Run Locally
 
-Fork and clone this repository and then cd into the main file.
+Fork and clone this repository down and then cd into the file.
 
-Run npm start to start locally. This should open in your browser automatically, but if not go to localhost:3000
+> npm install
+
+installs all relevant dependencies.
+
+> npm start
+
+will start locally in your browser. This should open automatically or if not go to https://localhost:3000
