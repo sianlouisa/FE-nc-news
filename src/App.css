@@ -77,20 +77,27 @@
 
 .article-list {
   list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #article-item {
   height: 100%;
-  border-style: dashed;
-  border-width: 1px;
-  border-color: black;
+  width: 50%;
   margin: 10px;
+  margin-left: 0%;
+  padding-left: 0%;
   padding: 1%;
   padding-top: 0%;
   padding-bottom: 0%;
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
   grid-template-areas: 'title title title title vote' 'card card card card card';
+}
+
+#article-item:hover {
+  box-shadow: 0px 0px 1px 1px lightgray;
 }
 
 .title {
