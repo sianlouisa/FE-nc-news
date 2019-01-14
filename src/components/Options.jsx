@@ -15,17 +15,14 @@ class Options extends Component {
       <div className="sort">
         <form onSubmit={this.handleSubmit} className="sort-options">
           <button
-            className="mui-btn mui-btn--raised mui-btn--primary"
+            className="mui-btn"
             onClick={() => this.handlePageTurn(-1)}
             value="-1"
           >
             {'<'}
           </button>
           <div className="mui-dropdown">
-            <button
-              className="mui-btn mui-btn--primary"
-              data-mui-toggle="dropdown"
-            >
+            <button className="mui-btn " data-mui-toggle="dropdown">
               View
               <span className="mui-caret" />
             </button>
@@ -38,10 +35,7 @@ class Options extends Component {
             </ul>
           </div>
           <div className="mui-dropdown">
-            <button
-              className="mui-btn mui-btn--primary"
-              data-mui-toggle="dropdown"
-            >
+            <button className="mui-btn" data-mui-toggle="dropdown">
               Sort Type
               <span className="mui-caret" />
             </button>
@@ -55,10 +49,7 @@ class Options extends Component {
             </select>
           </div>
           <div className="mui-dropdown">
-            <button
-              className="mui-btn mui-btn--primary"
-              data-mui-toggle="dropdown"
-            >
+            <button className="mui-btn" data-mui-toggle="dropdown">
               Sort By
               <span className="mui-caret" />
             </button>
@@ -70,11 +61,11 @@ class Options extends Component {
               <option value="false">Descening</option>
             </select>
           </div>
-          <button className="mui-btn mui-btn--primary" type="submit">
+          <button className="mui-btn" type="submit">
             Submit
           </button>
           <button
-            className="mui-btn mui-btn--raised mui-btn--primary"
+            className="mui-btn"
             onClick={() => this.handlePageTurn(1)}
             value="1"
           >

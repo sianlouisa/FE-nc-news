@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import Button from 'muicss/lib/react/button';
 
 class Vote extends Component {
   state = { voteChange: 0 };
@@ -10,21 +11,25 @@ class Vote extends Component {
     return (
       <>
         <div className="vote">
-          <button
-            className="mui-btn mui-btn--small mui-btn--primary mui-btn--fab"
+          <Button
+            variant="fab"
+            size="small"
+            className="vote-but"
             onClick={() => this.vote(1)}
             disabled={voteChange === 1}
           >
             +
-          </button>
-          {votes + voteChange}
-          <button
-            className="mui-btn mui-btn--small mui-btn--primary mui-btn--fab"
+          </Button>{' '}
+          {votes + voteChange}{' '}
+          <Button
+            variant="fab"
+            size="small"
+            className="vote-but"
             onClick={() => this.vote(-1)}
             disabled={voteChange === -1}
           >
             -
-          </button>
+          </Button>
         </div>
       </>
     );

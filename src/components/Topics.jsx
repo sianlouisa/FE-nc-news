@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Link } from '@reach/router';
 import Dropdown from 'muicss/lib/react/dropdown';
 import DropdownItem from 'muicss/lib/react/dropdown-item';
 

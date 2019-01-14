@@ -1,17 +1,18 @@
 import React from 'react';
 import * as api from '../api';
+import Button from 'muicss/lib/react/button';
 
 const Delete = props => {
   return (
-    <button type="submit" onClick={handleDelete} value={props.articleId}>
+    <Button color="primary" onClick={handleDelete} value={props.article_id}>
       Delete
-    </button>
+    </Button>
   );
 };
 
 const handleDelete = event => {
-  const articleIdToDelete = event.target.value;
-  api.deleteItem(articleIdToDelete);
+  const article_id = event.target.value;
+  api.deleteItem(article_id);
 };
 
 export default Delete;
