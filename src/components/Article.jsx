@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import Moment from 'react-moment';
+import { Link } from '@reach/router';
 import CommentsCard from './CommentsCard';
 import PostComment from './PostComment';
 import Delete from './Delete';
@@ -15,8 +17,13 @@ class Article extends Component {
         <h2>{article.title}</h2>
         <p>{article.body}</p>
         <span className="article">
-          <p>Author: {article.author}</p>
-          <p>Time: {article.created_at}</p>
+          <p>
+            Author:{' '}
+            <Link to={`/users/${article.author}`}>{article.author}</Link>
+          </p>
+          <p>
+            <Moment>{article.created_at}</Moment>
+          </p>
           <p>Comments: {article.comment_count}</p>
           <Vote votes={article.votes} article_id={article.article_id} />
           <Delete article_id={article.article_id} />
