@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import * as api from '../api';
+import Errors from './Errors';
 
 class User extends Component {
-  state = { user: {} };
+  state = { user: {}, err: null };
   render() {
-    const { user } = this.state;
+    const { user, err } = this.state;
+    if (err) return <Errors />;
     return (
       <>
         <div className="user-profile">
@@ -21,7 +23,10 @@ class User extends Component {
   }
 
   fetchUser = username => {
-    api.getUsers(username).then(user => this.setState({ user }));
+    api
+      .getUsers(username)
+      .then(user => this.setState({ user }))
+      .catch(err => this.setState({ err }));
   };
 }
 

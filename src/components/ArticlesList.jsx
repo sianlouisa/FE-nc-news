@@ -4,14 +4,17 @@ import Options from './Options';
 import Vote from './Vote';
 import * as api from '../api';
 import ArticleCard from './ArticleCard';
+import Errors from './Errors';
 
 class ArticlesList extends Component {
   state = {
     articles: [],
+    err: null,
   };
   render() {
     const { handleClick } = this.props;
-    const { articles } = this.state;
+    const { articles, err } = this.state;
+    if (err) return <Errors />;
     return (
       <>
         <Options fetchSortedArticles={this.fetchSortedArticles} />
@@ -50,13 +53,15 @@ class ArticlesList extends Component {
   fetchAllArticles = () => {
     api
       .getArticles(undefined, this.props.topic)
-      .then(articles => this.setState({ articles }));
+      .then(articles => this.setState({ articles }))
+      .catch(err => this.setState({ err }));
   };
 
   fetchSortedArticles = (sort, topic) => {
     api
       .getArticles(sort, topic)
-      .then(sortedArticles => this.setState({ articles: sortedArticles }));
+      .then(sortedArticles => this.setState({ articles: sortedArticles }))
+      .catch(err => this.setState({ err }));
   };
 }
 

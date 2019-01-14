@@ -11,6 +11,7 @@ import PostArticle from './components/PostArticle';
 import Article from './components/Article';
 import ArticlesList from './components/ArticlesList';
 import User from './components/User';
+import Errors from './components/Errors';
 
 class App extends Component {
   state = { user: {}, topics: [] };
@@ -29,6 +30,7 @@ class App extends Component {
             <User path="/users/:username" />
             <PostTopic path="/post/topic" />
             <PostArticle path="/post/article" user={user} topics={topics} />
+            <Errors default />
           </Router>
           <NavBar topics={topics} />
         </Auth>

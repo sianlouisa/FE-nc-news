@@ -6,12 +6,14 @@ import CommentsCard from './CommentsCard';
 import PostComment from './PostComment';
 import Delete from './Delete';
 import Vote from './Vote';
+import Errors from './Errors';
 
 class Article extends Component {
-  state = { article: [], comments: [], loadedComments: false };
+  state = { article: [], comments: [], loadedComments: false, err: null };
   render() {
     const { user } = this.props;
-    const { article, loadedComments, comments } = this.state;
+    const { article, loadedComments, comments, err } = this.state;
+    if (err) return <Errors />;
     return (
       <>
         <h2>{article.title}</h2>
@@ -53,13 +55,17 @@ class Article extends Component {
   }
 
   fetchArticlesById = article_id => {
-    api.getArticleById(article_id).then(article => this.setState({ article }));
+    api
+      .getArticleById(article_id)
+      .then(article => this.setState({ article }))
+      .catch(err => this.setState({ err }));
   };
 
   fetchComments = id => {
     api
       .getArticleComments(id)
-      .then(comments => this.setState({ comments, loadedComments: true }));
+      .then(comments => this.setState({ comments, loadedComments: true }))
+      .catch(err => this.setState({ err }));
   };
 
   getNewComment = comment => {

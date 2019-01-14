@@ -14,22 +14,32 @@ class PostArticle extends Component {
     body: '',
     topic: '',
     sent: false,
+    err: null,
   };
   render() {
     const { topics } = this.props;
+    const { err } = this.state;
+
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <legend>Post Article</legend>
-        <Input placeholder="Title" onChange={this.handleTitleChange} />
-        <Textarea placeholder="Body" onChange={this.handleBodyChange} />
-        <Select defaultValue="Choose Topic" onChange={this.handleTopic}>
-          <Option value="Choose Topic" label="Choose Topic" />
-          {topics.map(topic => (
-            <Option value={topic.slug} key={topic.slug} label={topic.slug} />
-          ))}
-        </Select>
-        <Button variant="raised">Submit</Button>
-      </Form>
+      <>
+        <span>
+          {err && (
+            <h2 className="missing-content">Please fill out all fields</h2>
+          )}
+        </span>
+        <Form onSubmit={this.handleSubmit}>
+          <legend>Post Article</legend>
+          <Input placeholder="Title" onChange={this.handleTitleChange} />
+          <Textarea placeholder="Body" onChange={this.handleBodyChange} />
+          <Select defaultValue="Choose Topic" onChange={this.handleTopic}>
+            <Option value="Choose Topic" label="Choose Topic" />
+            {topics.map(topic => (
+              <Option value={topic.slug} key={topic.slug} label={topic.slug} />
+            ))}
+          </Select>
+          <Button variant="raised">Submit</Button>
+        </Form>
+      </>
     );
   }
 
@@ -49,12 +59,19 @@ class PostArticle extends Component {
   };
 
   handleSubmit = event => {
+    event.preventDefault();
     const { title, body, topic } = this.state;
     const user_id = this.props.user.user_id;
-    event.preventDefault();
-    api
-      .postArticle({ title, body, topic, user_id })
-      .then(article => this.props.navigate(`/articles/${article.article_id}`));
+    const article = { title, body, topic };
+    const articleArray = Object.values(article);
+    articleArray.some(input => input.length < 1)
+      ? this.setState({ err: true })
+      : api
+          .postArticle({ title, body, topic, user_id })
+          .then(article =>
+            this.props.navigate(`/articles/${article.article_id}`),
+          )
+          .catch(err => this.setState({ err }));
   };
 }
 

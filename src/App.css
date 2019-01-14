@@ -118,6 +118,10 @@
   align-items: center;
 }
 
+.missing-content {
+  color: red;
+}
+
 /* OPTIONS */
 
 .sort {
