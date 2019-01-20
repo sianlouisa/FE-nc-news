@@ -9,7 +9,11 @@ const Header = props => {
     <>
       <div className="header">
         <Link to="/">
-          <h1 className="home-link">NC News</h1>
+          <img
+            src={process.env.PUBLIC_URL + '/nc-news-logo.png'}
+            alt="logo"
+            className="logo"
+          />
         </Link>
       </div>
       <div className="welcome">

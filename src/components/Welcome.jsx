@@ -7,15 +7,14 @@ const Welcome = props => {
   const { logout } = props;
   return (
     <>
+      <p>
+        Hi, <Link to={`/users/${username}`}>{name}</Link>!
+      </p>
       <span>
-        {'Hi, '}
-        <Link to={`/users/${username}`}>{name}</Link>
-        {'!'}
+        <Button size="small" color="primary" type="submit" onClick={logout}>
+          Logout
+        </Button>
       </span>
-      <br />
-      <Button size="small" type="submit" onClick={logout}>
-        Logout
-      </Button>
     </>
   );
 };
