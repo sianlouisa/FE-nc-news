@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import Options from './Options';
-import Vote from './Vote';
 import * as api from '../api';
 import ArticleCard from './ArticleCard';
 import Errors from './Errors';
@@ -22,17 +21,15 @@ class ArticlesList extends Component {
         <ul className="article-list">
           {articles.map(article => (
             <li id="article-item" key={article.article_id}>
-              <div className="title">
-                <Link
-                  to={`/articles/${article.article_id}`}
-                  onClick={handleClick}
-                  value={article.article_id}
-                >
-                  <h3>{article.title.toUpperCase()}</h3>
-                </Link>
-                <p>{article.body.slice(0, 150) + '...'}</p>
-              </div>
-              <Vote article_id={article.article_id} votes={article.votes} />
+              <Link
+                to={`/articles/${article.article_id}`}
+                onClick={handleClick}
+                value={article.article_id}
+              >
+                <h3>{article.title.toUpperCase()}</h3>
+              </Link>
+
+              <p>{article.body.slice(0, 150) + '...'}</p>
               <ArticleCard article={article} />
             </li>
           ))}
