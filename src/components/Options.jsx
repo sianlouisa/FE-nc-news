@@ -62,7 +62,6 @@ class Options extends Component {
     );
   }
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.props);
     if (this.state !== prevState) {
       const { topic, fetchSortedArticles } = this.props;
       const { sort_by, sort_ascending, p, limit } = this.state;
