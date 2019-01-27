@@ -1,14 +1,10 @@
 import React from 'react';
 import * as api from '../api';
-import Button from 'muicss/lib/react/button';
 import { navigate } from '@reach/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Delete = props => {
   return (
-    // <Button color="primary" onClick={() => handleDelete(props)}>
-    //   Delete
-    // </Button>
     <button className="hide-button" onClick={() => handleDelete(props)}>
       <FontAwesomeIcon icon="trash" size="2x" />
     </button>
