@@ -68,8 +68,9 @@ class Article extends Component {
   }
 
   componentDidMount() {
-    this.fetchArticlesById(this.props.id);
-    this.fetchComments(this.props.id);
+    const { id } = this.props;
+    this.fetchArticlesById(id);
+    this.fetchComments(id);
   }
 
   fetchArticlesById = article_id => {
@@ -87,8 +88,9 @@ class Article extends Component {
   };
 
   getNewComment = comment => {
+    const { comments } = this.state;
     this.setState({
-      comments: [comment, ...this.state.comments],
+      comments: [comment, ...comments],
     });
   };
 }

@@ -94,27 +94,20 @@ class Options extends Component {
 
   handlePageTurn = inc => {
     const { sort_by, sort_ascending, p, limit } = this.state;
-    const { topic } = this.props;
+    const { topic, fetchSortedArticles } = this.props;
     this.setState(
       state => ({
         p: state.p + inc,
       }),
-      () =>
-        this.props.fetchSortedArticles(
-          { sort_by, sort_ascending, p, limit },
-          topic,
-        ),
+      () => fetchSortedArticles({ sort_by, sort_ascending, p, limit }, topic),
     );
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    const { topic } = this.props;
+    const { topic, fetchSortedArticles } = this.props;
     const { sort_by, sort_ascending, p, limit } = this.state;
-    this.props.fetchSortedArticles(
-      { sort_by, sort_ascending, p, limit },
-      topic,
-    );
+    fetchSortedArticles({ sort_by, sort_ascending, p, limit }, topic);
   };
 }
 

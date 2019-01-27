@@ -62,16 +62,18 @@ class ArticlesList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.topic !== this.props.topic) {
+    const { topic } = this.props;
+    if (prevProps.topic !== topic) {
       this.fetchAllArticles(undefined);
     }
   }
 
   fetchAllArticles = () => {
+    const { topic } = this.props;
     api
-      .getArticles(undefined, this.props.topic)
+      .getArticles(undefined, topic)
       .then(articles => this.setState({ articles }))
-      .catch(err => {
+      .catch(() => {
         this.setState({ err: true });
       });
   };
@@ -79,8 +81,8 @@ class ArticlesList extends Component {
   fetchSortedArticles = (sort, topic) => {
     api
       .getArticles(sort, topic)
-      .then(sortedArticles => this.setState({ articles: sortedArticles }))
-      .catch(err => {
+      .then(articles => this.setState({ articles }))
+      .catch(() => {
         this.setState({ err: true });
       });
   };

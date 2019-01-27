@@ -11,13 +11,20 @@ const CommentsCard = props => {
       <ul className="comments">
         {comments.map(comment => (
           <li id="comment-item" key={comment.comment_id}>
-            <div className="vote-body">
+            <div
+              className={
+                comment.author === user.username
+                  ? 'vote-body'
+                  : 'vote-body-no-delete'
+              }
+            >
               <Vote
                 comment_id={comment.comment_id}
                 votes={comment.votes}
                 article_id={article_id}
+                className="float-left"
               />
-              {comment.body}
+              <p className="align-body-center">{comment.body}</p>
               {comment.author === user.username && (
                 <Delete
                   comment_id={comment.comment_id}

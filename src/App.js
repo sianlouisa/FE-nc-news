@@ -61,7 +61,7 @@ class App extends Component {
   };
 
   saveUser = () => {
-    const user = this.state.user;
+    const { user } = this.state;
     localStorage.setItem('user', JSON.stringify(user));
   };
 

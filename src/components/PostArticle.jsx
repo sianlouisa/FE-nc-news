@@ -57,7 +57,7 @@ class PostArticle extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { title, body, topic } = this.state;
-    const user_id = this.props.user.user_id;
+    const { user_id } = this.props.user;
     const article = { title, body, topic };
     const articleArray = Object.values(article);
     articleArray.some(input => input.length < 1)

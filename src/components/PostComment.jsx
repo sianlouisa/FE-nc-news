@@ -35,14 +35,14 @@ class PostComment extends Component {
   };
 
   handleSubmit = event => {
-    const { article_id, user_id } = this.props;
+    const { article_id, user_id, getNewComment } = this.props;
     const { body } = this.state;
     event.preventDefault();
-    if (this.state.body.length === 0) {
+    if (body.length === 0) {
       this.setState({ error: true, sent: false });
     } else {
       api.postCommentOnArticle({ body, article_id, user_id }).then(comment => {
-        this.props.getNewComment(comment);
+        getNewComment(comment);
         this.setState({ body: '', sent: true, error: false });
       });
     }

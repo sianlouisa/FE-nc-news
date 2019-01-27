@@ -19,7 +19,8 @@ class User extends Component {
   }
 
   componentDidMount() {
-    this.fetchUser(this.props.username);
+    const { username } = this.props;
+    this.fetchUser(username);
   }
 
   fetchUser = username => {

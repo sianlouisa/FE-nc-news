@@ -72,15 +72,10 @@
 }
 
 #comment-item {
-  margin: 10px;
-  padding: 1%;
-}
-
-.post-comment {
   margin: auto;
+  margin-bottom: 10px;
+  padding: 1%;
   width: 75%;
-  padding: 10px;
-  margin-top: 20px;
 }
 
 /* CONTENT */
@@ -155,6 +150,20 @@
   justify-content: space-between;
 }
 
+.vote-body-no-delete {
+  display: flex;
+  flex-direction: row;
+}
+
+.float-left {
+  float: left;
+}
+
+.align-body-center {
+  text-align: center;
+  width: 100%;
+}
+
 .vote-count {
   font-size: 12px;
 }
@@ -178,6 +187,12 @@
 .post-article {
   width: 75%;
   margin: auto;
+}
+
+.post-comment {
+  margin: auto;
+  width: 75%;
+  margin-top: 20px;
 }
 
 /* OPTIONS */

@@ -38,23 +38,20 @@ class PostTopic extends Component {
   }
   handleSlugChange = event => {
     const slug = event.target.value;
-    this.setState(state => ({
-      slug,
-    }));
+    this.setState({ slug });
   };
 
   handleDescriptionChange = event => {
     const description = event.target.value;
-    this.setState(state => ({
-      description,
-    }));
+    this.setState({ description });
   };
 
   handleSubmit = event => {
+    const { slug, description } = this.state;
     event.preventDefault();
     const topic = {
-      slug: this.state.slug,
-      description: this.state.description,
+      slug,
+      description,
     };
     const topicArray = Object.values(topic);
     topicArray.some(input => input.length < 1)
