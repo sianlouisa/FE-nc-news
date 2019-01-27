@@ -6,14 +6,9 @@ const ArticleCard = props => {
   const { article } = props;
   return (
     <div className="article-card">
-      {' '}
-      <p>
-        Author: <Link to={`/users/${article.author}`}>{article.author}</Link>
-      </p>
-      <p>
-        <Moment>{article.created_at}</Moment>
-      </p>
-      <p>Comments: {article.comment_count}</p>
+      <Link to={`/users/${article.author}`}>{article.author}</Link>
+      <Moment fromNow>{article.created_at}</Moment>
+      Comments: {article.comment_count}
     </div>
   );
 };

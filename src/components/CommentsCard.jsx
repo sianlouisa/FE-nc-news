@@ -1,6 +1,7 @@
 import React from 'react';
 import Vote from './Vote';
 import Delete from './Delete';
+import Moment from 'react-moment';
 
 const CommentsCard = props => {
   const { comments, article_id, user } = props;
@@ -13,7 +14,7 @@ const CommentsCard = props => {
 
             {comment.author}
             <br />
-            {comment.created_at}
+            <Moment fromNow>{comment.created_at}</Moment>
             <Vote
               comment_id={comment.comment_id}
               votes={comment.votes}
