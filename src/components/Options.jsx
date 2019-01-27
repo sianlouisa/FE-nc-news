@@ -8,6 +8,7 @@ class Options extends Component {
     p: 1,
     limit: 10,
     limits: [5, 10, 15],
+    labelWidth: 0,
   };
   render() {
     const { limits } = this.state;

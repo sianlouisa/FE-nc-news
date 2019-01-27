@@ -2,18 +2,15 @@ import React from 'react';
 import { Link } from '@reach/router';
 
 const Errors = props => {
-  if (props.location.state.message === 'no articles') {
-    return (
-      <>
-        <h2>No articles for this topic yet.</h2>
-        <p>
-          <Link to="/post/article">Be the first to post an article!</Link>
-        </p>
-      </>
-    );
-  }
-
-  return <h2>{'Something went wrong! :( '}</h2>;
+  return (
+    <>
+      <h1>404</h1>
+      <p>{'Oh no! Looks like something went wrong :('}</p>
+      <p>
+        <Link to="/">Back to home</Link>
+      </p>
+    </>
+  );
 };
 
 export default Errors;

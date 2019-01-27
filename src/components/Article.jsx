@@ -17,7 +17,6 @@ class Article extends Component {
   };
   render() {
     const { user } = this.props;
-    const { message } = this.props.location.state;
     const {
       article,
       loadedComments,
@@ -28,7 +27,6 @@ class Article extends Component {
     if (articleErr) return <Errors />;
     return (
       <>
-        {message === 'comment deleted' && <h2>Comment deleted</h2>}
         <div className="article">
           <div className="article-body">
             <h2>{article.title}</h2>
@@ -47,7 +45,6 @@ class Article extends Component {
           getNewComment={this.getNewComment}
           article_id={article.article_id}
         />
-        {comments.length === 0 && <p>Be the first to comment!</p>}
         {loadedComments ? (
           <CommentsCard
             user={user}
@@ -55,9 +52,9 @@ class Article extends Component {
             article_id={article.article_id}
           />
         ) : commentErr ? (
-          <p>Loading Comments...</p>
+          <p>Be the first to comment</p>
         ) : (
-          <p>No Comments Yet!</p>
+          <p>Loading Comments</p>
         )}
       </>
     );
@@ -84,7 +81,7 @@ class Article extends Component {
 
   getNewComment = comment => {
     this.setState({
-      comments: [...this.state.comments, comment],
+      comments: [comment, ...this.state.comments],
     });
   };
 }

@@ -16,15 +16,14 @@ class PostComment extends Component {
     return (
       <>
         {error && <h2>Please fill out all fields</h2>}
-        {sent && <h2>Successfully commented!</h2>}
-        <Form onSubmit={this.handleSubmit}>
-          <legend>Post Comment</legend>
+        {sent && <h2>Posted Comment</h2>}
+        <Form onSubmit={this.handleSubmit} className="post-comment">
           <Textarea
-            placeholder="Comment"
+            placeholder="Post Comment"
             onChange={this.handleChange}
             value={body}
           />
-          <Button variant="raised">Submit</Button>
+          <Button variant="raised">Post</Button>
         </Form>
       </>
     );
@@ -40,7 +39,7 @@ class PostComment extends Component {
     const { body } = this.state;
     event.preventDefault();
     if (this.state.body.length === 0) {
-      this.setState({ error: true });
+      this.setState({ error: true, sent: false });
     } else {
       api.postCommentOnArticle({ body, article_id, user_id }).then(comment => {
         this.props.getNewComment(comment);
