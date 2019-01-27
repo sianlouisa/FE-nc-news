@@ -7,33 +7,42 @@ import PostComment from './PostComment';
 import Delete from './Delete';
 import Vote from './Vote';
 import Errors from './Errors';
+import ArticleCard from './ArticleCard';
 
 class Article extends Component {
-  state = { article: [], comments: [], loadedComments: false, err: null };
+  state = {
+    article: [],
+    comments: [],
+    loadedComments: false,
+    articleErr: null,
+    commentErr: null,
+  };
   render() {
     const { user } = this.props;
     const { message } = this.props.location.state;
-    const { article, loadedComments, comments, err } = this.state;
-    if (err) return <Errors />;
+    const {
+      article,
+      loadedComments,
+      comments,
+      articleErr,
+      commentErr,
+    } = this.state;
+    if (articleErr) return <Errors />;
     return (
       <>
         {message === 'comment deleted' && <h2>Comment deleted</h2>}
-        <h2>{article.title}</h2>
-        <p>{article.body}</p>
-        <span className="article">
-          <p>
-            Author:{' '}
-            <Link to={`/users/${article.author}`}>{article.author}</Link>
-          </p>
-          <p>
-            <Moment>{article.created_at}</Moment>
-          </p>
-          <p>Comments: {article.comment_count}</p>
-          <Vote votes={article.votes} article_id={article.article_id} />
-          {article.author === user.username && (
-            <Delete article_id={article.article_id} />
-          )}
-        </span>
+        <div className="article">
+          <div className="article-body">
+            <h2>{article.title}</h2>
+            <div className="vote-body">
+              <Vote votes={article.votes} article_id={article.article_id} />
+              {article.body}
+            </div>
+          </div>
+
+          <Delete article_id={article.article_id} />
+        </div>
+        <ArticleCard article={article} />
         <PostComment
           user_id={user.user_id}
           getNewComment={this.getNewComment}
@@ -46,8 +55,10 @@ class Article extends Component {
             comments={comments}
             article_id={article.article_id}
           />
-        ) : (
+        ) : commentErr ? (
           <p>Loading Comments...</p>
+        ) : (
+          <p>No Comments Yet!</p>
         )}
       </>
     );
@@ -62,14 +73,14 @@ class Article extends Component {
     api
       .getArticleById(article_id)
       .then(article => this.setState({ article }))
-      .catch(err => this.setState({ err }));
+      .catch(err => this.setState({ articleErr: err }));
   };
 
   fetchComments = id => {
     api
       .getArticleComments(id)
       .then(comments => this.setState({ comments, loadedComments: true }))
-      .catch(err => this.setState({ err }));
+      .catch(err => this.setState({ commentErr: err }));
   };
 
   getNewComment = comment => {

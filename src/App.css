@@ -5,7 +5,6 @@
   display: grid;
   grid-template: 1fr 1fr 1fr / 1fr 1fr;
   grid-template-areas: 'header login' 'nav nav' 'content content';
-  overflow: scroll;
   overflow-x: hidden;
   color: gray;
 }
@@ -125,17 +124,26 @@
 
 .article {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  border-color: blue;
-  border-style: solid;
+}
+
+.article-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
 }
 
 .vote {
   grid-area: vote;
   display: flex;
   flex-direction: column;
+}
+
+.vote-body {
+  display: flex;
+  flex-direction: row;
 }
 
 .vote-count {
@@ -149,15 +157,6 @@
 
 .vote-button {
   color: #3084f8;
-}
-
-.arrow-down {
-  height: 0px;
-  width: 0px;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-
-  border-top: 10px solid #f00;
 }
 
 .missing-content {
