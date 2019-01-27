@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import '../App.css';
+import { withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import Button from '@material-ui/core/Button';
+import MediaQuery from 'react-responsive';
 
 class Options extends Component {
   state = {
@@ -7,72 +13,53 @@ class Options extends Component {
     sort_ascending: true,
     p: 1,
     limit: 10,
-    limits: [5, 10, 15],
-    labelWidth: 0,
   };
   render() {
-    const { limits } = this.state;
+    const { classes } = this.props;
     return (
       <div className="sort">
-        <form onSubmit={this.handleSubmit} className="sort-options">
-          <button
-            className="mui-btn"
+        <MediaQuery minDeviceWidth={1000}>
+          <Button
+            variant="outlined"
+            className={classes.button}
             onClick={() => this.handlePageTurn(-1)}
             value="-1"
           >
-            {'<'}
-          </button>
-          <div className="mui-dropdown">
-            <button className="mui-btn " data-mui-toggle="dropdown">
-              View
-              <span className="mui-caret" />
-            </button>
-            <ul className="mui-dropdown__menu" onClick={this.handleLimitClick}>
-              {limits.map((limit, i) => (
-                <li value={limit} key={i}>
-                  {limit}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="mui-dropdown">
-            <button className="mui-btn" data-mui-toggle="dropdown">
+            BACK
+          </Button>
+          <form onSubmit={this.handleSubmit} className="sort-options" />
+          <FormControl className={classes.formControl}>
+            <InputLabel shrink htmlFor="age-native-label-placeholder">
+              Limit
+            </InputLabel>
+            <NativeSelect value={this.state.limit} onChange={this.handleLimitClick}>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={15}>15</option>
+            </NativeSelect>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel shrink htmlFor="age-native-label-placeholder">
               Sort Type
-              <span className="mui-caret" />
-            </button>
-            <select
-              className="mui-dropdown__menu"
-              onClick={this.handleSortClick}
-            >
-              <option value="votes">Votes</option>
-              <option value="comment_count">Comments</option>
-              <option value="created_at">Date</option>
-            </select>
-          </div>
-          <div className="mui-dropdown">
-            <button className="mui-btn" data-mui-toggle="dropdown">
-              Sort By
-              <span className="mui-caret" />
-            </button>
-            <select
-              className="mui-dropdown__menu mui-dropdown__menu--right"
-              onClick={this.handleAscClick}
-            >
-              <option value="true">Ascending</option>
-              <option value="false">Descening</option>
-            </select>
-          </div>
-          <button className="mui-btn" type="submit">
+            </InputLabel>
+            <NativeSelect value={this.state.sort_by} onChange={this.handleSortClick}>
+              <option value="created_at">Newest</option>
+              <option value="votes">Trending</option>
+              <option value="comment_count">Popular</option>
+            </NativeSelect>
+          </FormControl>
+          <Button variant="outlined" className={classes.button} onClick={this.handleSubmit}>
             Submit
-          </button>
-          <button
-            className="mui-btn"
+          </Button>
+          <Button
+            variant="outlined"
+            className={classes.button}
             onClick={() => this.handlePageTurn(1)}
             value="1"
           >
-            {'>'}
-          </button>
-        </form>
+            NEXT
+          </Button>
+        </MediaQuery>
       </div>
     );
   }
@@ -87,12 +74,8 @@ class Options extends Component {
     this.setState({ sort_by });
   };
 
-  handleAscClick = event => {
-    const sort_ascending = event.target.value;
-    this.setState({ sort_ascending });
-  };
-
   handlePageTurn = inc => {
+    console.log(this.state);
     const { sort_by, sort_ascending, p, limit } = this.state;
     const { topic, fetchSortedArticles } = this.props;
     this.setState(
@@ -111,4 +94,24 @@ class Options extends Component {
   };
 }
 
-export default Options;
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing.unit,
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing.unit * 2,
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
+
+export default withStyles(styles)(Options);

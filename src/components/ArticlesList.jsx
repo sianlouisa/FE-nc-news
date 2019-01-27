@@ -9,6 +9,7 @@ class ArticlesList extends Component {
   state = {
     articles: [],
     err: false,
+    noPage: false,
   };
 
   render() {
@@ -83,7 +84,7 @@ class ArticlesList extends Component {
       .getArticles(sort, topic)
       .then(articles => this.setState({ articles }))
       .catch(() => {
-        this.setState({ err: true });
+        this.setState({ noPage: true });
       });
   };
 }
