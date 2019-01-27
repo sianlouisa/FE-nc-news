@@ -16,9 +16,10 @@ class Options extends Component {
   };
   render() {
     const { classes } = this.props;
+    const { limit, sort_by } = this.state;
     return (
       <div className="sort">
-        <MediaQuery minDeviceWidth={1000}>
+        <MediaQuery minDeviceWidth={450}>
           <Button
             variant="outlined"
             className={classes.button}
@@ -32,7 +33,7 @@ class Options extends Component {
             <InputLabel shrink htmlFor="age-native-label-placeholder">
               Limit
             </InputLabel>
-            <NativeSelect value={this.state.limit} onChange={this.handleLimitClick}>
+            <NativeSelect value={limit} onChange={this.handleChange}>
               <option value={5}>5</option>
               <option value={10}>10</option>
               <option value={15}>15</option>
@@ -42,15 +43,12 @@ class Options extends Component {
             <InputLabel shrink htmlFor="age-native-label-placeholder">
               Sort Type
             </InputLabel>
-            <NativeSelect value={this.state.sort_by} onChange={this.handleSortClick}>
+            <NativeSelect value={sort_by} onChange={this.handleChange}>
               <option value="created_at">Newest</option>
               <option value="votes">Trending</option>
               <option value="comment_count">Popular</option>
             </NativeSelect>
           </FormControl>
-          <Button variant="outlined" className={classes.button} onClick={this.handleSubmit}>
-            Submit
-          </Button>
           <Button
             variant="outlined"
             className={classes.button}
@@ -63,19 +61,23 @@ class Options extends Component {
       </div>
     );
   }
+  componentDidUpdate(prevProps, prevState) {
+    console.log(this.props);
+    if (this.state !== prevState) {
+      const { topic, fetchSortedArticles } = this.props;
+      const { sort_by, sort_ascending, p, limit } = this.state;
+      fetchSortedArticles({ sort_by, sort_ascending, p, limit }, topic);
+    }
+  }
 
-  handleLimitClick = event => {
-    const limit = event.target.value;
-    this.setState({ limit });
-  };
-
-  handleSortClick = event => {
-    const sort_by = event.target.value;
-    this.setState({ sort_by });
+  handleChange = event => {
+    const sort = event.target.value;
+    sort.length <= 2
+      ? this.setState({ limit: sort })
+      : this.setState({ sort_by: sort });
   };
 
   handlePageTurn = inc => {
-    console.log(this.state);
     const { sort_by, sort_ascending, p, limit } = this.state;
     const { topic, fetchSortedArticles } = this.props;
     this.setState(
@@ -84,13 +86,6 @@ class Options extends Component {
       }),
       () => fetchSortedArticles({ sort_by, sort_ascending, p, limit }, topic),
     );
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const { topic, fetchSortedArticles } = this.props;
-    const { sort_by, sort_ascending, p, limit } = this.state;
-    fetchSortedArticles({ sort_by, sort_ascending, p, limit }, topic);
   };
 }
 

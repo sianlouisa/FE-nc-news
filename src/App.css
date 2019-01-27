@@ -201,9 +201,8 @@
 .sort {
   display: flex;
   flex-direction: rows;
-  justify-content: space-evenly;
-  padding: 1%;
-  width: 1000px;
+  justify-content: center;
+  width: 50%;
   margin: auto;
 }
 
