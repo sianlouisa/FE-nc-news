@@ -18,9 +18,6 @@ class ArticlesList extends Component {
     if (err) return <Errors />;
     return (
       <>
-        {this.props.location.state !== null && (
-          <h2>Article successfully deleted</h2>
-        )}
         <Options fetchSortedArticles={this.fetchSortedArticles} />
         <ul className="article-list">
           {articles.map(article => (
