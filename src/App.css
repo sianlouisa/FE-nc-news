@@ -90,6 +90,11 @@
   height: 75vh;
 }
 
+.loading {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
 /*ARTICLES */
 
 .article-list {

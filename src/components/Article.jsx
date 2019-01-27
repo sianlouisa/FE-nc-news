@@ -6,6 +6,7 @@ import Delete from './Delete';
 import Vote from './Vote';
 import Errors from './Errors';
 import ArticleCard from './ArticleCard';
+import ReactLoading from 'react-loading';
 
 class Article extends Component {
   state = {
@@ -54,7 +55,13 @@ class Article extends Component {
         ) : commentErr ? (
           <p>Be the first to comment</p>
         ) : (
-          <p>Loading Comments</p>
+          <ReactLoading
+            type="spinningBubbles"
+            color="#3084f8"
+            height={500}
+            width={500}
+            className="loading"
+          />
         )}
       </>
     );
