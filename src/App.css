@@ -168,8 +168,16 @@
   color: #3084f8;
 }
 
-.missing-content {
-  color: red;
+/* POSTS */
+
+.post-topic {
+  width: 75%;
+  margin: auto;
+}
+
+.post-article {
+  width: 75%;
+  margin: auto;
 }
 
 /* OPTIONS */

@@ -17,12 +17,8 @@ class PostTopic extends Component {
     const { sent, slug, description, error } = this.state;
     return (
       <>
-        {error && (
-          <h2 className="missing-content">Please fill out all fields</h2>
-        )}
-        {sent && <h2>Successfully Posted!</h2>}
-        <Form onSubmit={this.handleSubmit}>
-          <legend>Post Topic</legend>
+        <Form onSubmit={this.handleSubmit} className="post-topic">
+          <h2>Post a new topic for discussion</h2>
           <Input
             placeholder="Topic"
             onChange={this.handleSlugChange}
@@ -35,6 +31,8 @@ class PostTopic extends Component {
           />
           <Button variant="raised">Submit</Button>
         </Form>
+        {error && <h2>Please fill out all fields</h2>}
+        {sent && <h2>Successfully Posted</h2>}
       </>
     );
   }

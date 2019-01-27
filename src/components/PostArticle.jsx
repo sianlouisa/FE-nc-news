@@ -22,13 +22,8 @@ class PostArticle extends Component {
 
     return (
       <>
-        <span>
-          {err && (
-            <h2 className="missing-content">Please fill out all fields</h2>
-          )}
-        </span>
-        <Form onSubmit={this.handleSubmit}>
-          <legend>Post Article</legend>
+        <Form onSubmit={this.handleSubmit} className="post-article">
+          <h2>Post a new article</h2>
           <Input placeholder="Title" onChange={this.handleTitleChange} />
           <Textarea placeholder="Body" onChange={this.handleBodyChange} />
           <Select defaultValue="Choose Topic" onChange={this.handleTopic}>
@@ -39,6 +34,7 @@ class PostArticle extends Component {
           </Select>
           <Button variant="raised">Submit</Button>
         </Form>
+        {err && <h2>Please fill out all fields</h2>}
       </>
     );
   }
