@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import * as api from './api';
 import { Router } from '@reach/router';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowUp, faArrowDown, faTrash } from '@fortawesome/free-solid-svg-icons';
+import * as api from './api';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
 import Auth from './components/Auth';
@@ -12,12 +14,7 @@ import Article from './components/Article';
 import ArticlesList from './components/ArticlesList';
 import User from './components/User';
 import Errors from './components/Errors';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faArrowUp,
-  faArrowDown,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+
 library.add(faArrowUp, faArrowDown, faTrash);
 
 class App extends Component {
@@ -51,6 +48,12 @@ class App extends Component {
     this.fetchTopics();
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const user = event.target.username.value;
+    api.getUsers(user).then(user => this.setState({ user }, () => this.saveUser()));
+  };
+
   logout = () => {
     localStorage.clear();
     this.setState({ user: null });
@@ -68,14 +71,6 @@ class App extends Component {
   getUser = () => {
     const user = JSON.parse(localStorage.getItem('user'));
     this.setState({ user });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    const user = event.target.username.value;
-    api.getUsers(user).then(user => {
-      return this.setState({ user }, () => this.saveUser());
-    });
   };
 }
 
