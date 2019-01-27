@@ -13,8 +13,12 @@ import ArticlesList from './components/ArticlesList';
 import User from './components/User';
 import Errors from './components/Errors';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
-library.add(faArrowUp, faArrowDown);
+import {
+  faArrowUp,
+  faArrowDown,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+library.add(faArrowUp, faArrowDown, faTrash);
 
 class App extends Component {
   state = { user: {}, topics: [] };

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import Moment from 'react-moment';
-import { Link } from '@reach/router';
 import CommentsCard from './CommentsCard';
 import PostComment from './PostComment';
 import Delete from './Delete';
@@ -37,10 +35,11 @@ class Article extends Component {
             <div className="vote-body">
               <Vote votes={article.votes} article_id={article.article_id} />
               {article.body}
+              {article.author === user.username && (
+                <Delete article_id={article.article_id} />
+              )}
             </div>
           </div>
-
-          <Delete article_id={article.article_id} />
         </div>
         <ArticleCard article={article} />
         <PostComment

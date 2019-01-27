@@ -28,7 +28,6 @@ class ArticlesList extends Component {
               >
                 <h3>{article.title.toUpperCase()}</h3>
               </Link>
-
               <p>{article.body.slice(0, 150) + '...'}</p>
               <ArticleCard article={article} />
             </li>
