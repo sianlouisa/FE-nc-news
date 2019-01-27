@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as api from '../api';
-import Button from 'muicss/lib/react/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Vote extends Component {
   state = { voteChange: 0 };
@@ -11,25 +11,21 @@ class Vote extends Component {
     return (
       <>
         <div className="vote">
-          <Button
-            variant="fab"
-            size="small"
-            className="vote-but"
+          <button
+            className="hide-button"
             onClick={() => this.vote(1)}
             disabled={voteChange === 1}
           >
-            +
-          </Button>{' '}
-          {votes + voteChange}{' '}
-          <Button
-            variant="fab"
-            size="small"
-            className="vote-but"
+            <FontAwesomeIcon icon="arrow-up" />
+          </button>
+          {votes + voteChange}
+          <button
+            className="hide-button"
             onClick={() => this.vote(-1)}
             disabled={voteChange === -1}
           >
-            -
-          </Button>
+            <FontAwesomeIcon icon="arrow-down" />
+          </button>
         </div>
       </>
     );

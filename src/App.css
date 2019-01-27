@@ -47,6 +47,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 15vh;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .welcome {
@@ -58,6 +61,7 @@
   flex-direction: column;
   max-height: 100%;
   max-width: 100%;
+  height: 15ch;
 }
 
 .logo {
@@ -81,9 +85,6 @@
   border-color: black;
   margin: 10px;
   padding: 1%;
-  display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr 1fr;
-  grid-template-areas: 'body body body body vote' 'body body body body info';
 }
 
 /* CONTENT */
@@ -142,7 +143,29 @@
 .vote {
   grid-area: vote;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.vote-count {
+  font-size: 12px;
+}
+
+.hide-button {
+  border: none;
+  background-color: transparent;
+}
+
+.vote-button {
+  color: #3084f8;
+}
+
+.arrow-down {
+  height: 0px;
+  width: 0px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+
+  border-top: 10px solid #f00;
 }
 
 .missing-content {
