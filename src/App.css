@@ -9,6 +9,16 @@
   color: gray;
 }
 
+/* BUTTONS */
+
+.btn {
+  border-radius: 10px;
+  border: 1px #ccc solid;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+}
+
 /* LOGIN */
 
 .login-wrapper {
@@ -42,20 +52,26 @@
 
 /* HEADER */
 
-.header {
+/* .header {
   grid-area: header;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 12vh;
-}
+} */
 
 .welcome {
   grid-area: login;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  flex-direction: column;
-  height: 12vh;
+  align-items: center;
+  height: 6vh;
+}
+
+.welcome > p {
+  margin-right: 15px;
+  margin-bottom: 0;
 }
 
 .logo {
@@ -68,6 +84,7 @@
 .comments {
   list-style: none;
   display: flex;
+  margin-left: -40px;
   flex-direction: column;
 }
 
@@ -82,7 +99,11 @@
 
 .content {
   grid-area: content;
-  height: 75vh;
+  padding: 25px;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .loading {
@@ -96,13 +117,14 @@
 .article-list {
   list-style: none;
   display: flex;
+  margin-left: -40px;
   flex-direction: column;
   align-items: center;
 }
 
 #article-item {
   height: 100%;
-  width: 70%;
+  width: 90%;
   margin: 10px;
   margin-left: 0%;
   padding-left: 0%;
@@ -213,21 +235,46 @@
   height: 10vh;
 }
 
+.navbar-toggler {
+  border-color: transparent !important;
+}
+
+.mr-auto {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 990px) {
+  .mr-auto {
+    background: white;
+    border: 1px #ccc solid;
+    padding: 12px;
+  }
+}
+
 /* USERS */
 
 .user-list {
   list-style: none;
+  width: 75%;
+  padding: 24px 0;
 }
 
 #user-item {
   display: flex;
-  justify-content: space-evenly;
+  align-items: center;
+  margin-left: -40px;
   text-align: center;
+  margin-bottom: 15px;
+  font-size: 18px;
 }
 
 #avatar-icon {
-  height: 50px;
-  width: 50px;
+  margin-right: 15px;
+  height: 75px;
+  width: 75px;
 }
 
 .profile-avatar {
