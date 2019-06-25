@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import * as api from '../api';
 import { Link } from '@reach/router';
+import * as api from '../api';
 
 class Users extends Component {
   state = { users: [] };
@@ -20,6 +20,7 @@ class Users extends Component {
       </ul>
     );
   }
+
   componentDidMount() {
     this.fetchUsers();
   }
