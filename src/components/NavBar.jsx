@@ -1,56 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../App.css';
-import Appbar from 'muicss/lib/react/appbar';
-import { Link } from '@reach/router';
-import Topics from './Topics';
-import Button from 'muicss/lib/react/button';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-class NavBar extends Component {
-  render() {
-    const { topics } = this.props;
-    let s1 = { verticalAlign: 'middle' };
-    let s2 = { textAlign: 'middle' };
-    return (
-      <>
-        <div className="nav">
-          <Appbar>
-            <table width="100%">
-              <tbody>
-                <tr style={s1}>
-                  <td className="mui--appbar-height">
-                    <span>
-                      {' '}
-                      <Button>
-                        <Link to="/post/topic">Post Topic</Link>
-                      </Button>
-                    </span>
-                    <span className="mui--divider-left">
-                      <Button>
-                        <Link to="/post/article">Post Article</Link>
-                      </Button>
-                    </span>
-                  </td>
-                  <td className="mui--appbar-height" />
-                  <td className="mui--appbar-height" style={s2}>
-                    <span>
-                      {' '}
-                      <Button>
-                        <Link to="/users">Users</Link>
-                      </Button>
-                    </span>
-                    <span className="mui--divider-left">
-                      {' '}
-                      <Topics topics={topics} />
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </Appbar>
-        </div>
-      </>
-    );
-  }
-}
+const NavBar = ({ topics }) => (
+  <>
+    <Navbar bg="light" expand="lg" className="nav">
+      <Navbar.Brand href="/">NC News</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Articles</Nav.Link>
+          <Nav.Link href="/users">Users</Nav.Link>
+          <NavDropdown title="Topics" id="basic-nav-dropdown">
+            {topics.map(topic => (
+              <NavDropdown.Item href={`/topics/${topic.slug}/articles`} key={topic.slug}>
+                {topic.slug}
+              </NavDropdown.Item>
+            ))}
+          </NavDropdown>
+          <NavDropdown title="Post" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/post/article">Article</NavDropdown.Item>
+            <NavDropdown.Item href="/post/topic">Topic</NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  </>
+);
 
 export default NavBar;
