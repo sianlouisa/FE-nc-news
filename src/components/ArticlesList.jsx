@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import ReactLoading from 'react-loading';
 import Options from './Options';
 import * as api from '../api';
 import ArticleCard from './ArticleCard';
-import ReactLoading from 'react-loading';
 
 class ArticlesList extends Component {
   state = {
@@ -22,40 +22,39 @@ class ArticlesList extends Component {
           <Link to="/post/article">Be the first to post an article!</Link>
         </>
       );
-    } else {
-      return (
-        <>
-          {articles.length === 0 ? (
-            <ReactLoading
-              type="spinningBubbles"
-              color="#3084f8"
-              height={500}
-              width={500}
-              className="loading"
-            />
-          ) : (
-            <>
-              <Options fetchSortedArticles={this.fetchSortedArticles} />
-              <ul className="article-list">
-                {articles.map(article => (
-                  <li id="article-item" key={article.article_id}>
-                    <Link
-                      to={`/articles/${article.article_id}`}
-                      onClick={handleClick}
-                      value={article.article_id}
-                    >
-                      <h3>{article.title.toUpperCase()}</h3>
-                    </Link>
-                    <p>{article.body.slice(0, 150) + '...'}</p>
-                    <ArticleCard article={article} />
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </>
-      );
     }
+    return (
+      <>
+        {articles.length === 0 ? (
+          <ReactLoading
+            type="spinningBubbles"
+            color="#3084f8"
+            height={500}
+            width={500}
+            className="loading"
+          />
+        ) : (
+          <>
+            <Options fetchSortedArticles={this.fetchSortedArticles} />
+            <ul className="article-list">
+              {articles.map(article => (
+                <li id="article-item" key={article.article_id}>
+                  <Link
+                    to={`/articles/${article.article_id}`}
+                    onClick={handleClick}
+                    value={article.article_id}
+                  >
+                    <h3>{article.title.toUpperCase()}</h3>
+                  </Link>
+                  <p>{`${article.body.slice(0, 150)}...`}</p>
+                  <ArticleCard article={article} />
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+      </>
+    );
   }
 
   componentDidMount() {
