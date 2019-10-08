@@ -8,7 +8,7 @@ A reddit-style news aggregator board built during training at Northcoders. Users
 
 - Deployed Frontend: https://sian-nc-news.netlify.com/
 - Backend API: https://sianncnews.herokuapp.com/api
-- Backend Repo: https://github.com/sianlouisa/nc-news
+- Backend Repo: https://github.com/sianlouisa/BE-nc-news
 
 ## To Run Locally
 
